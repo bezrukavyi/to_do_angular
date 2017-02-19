@@ -1,0 +1,11 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title TodoAngular
+    = csrf_meta_tags
+    = javascript_include_tag 'application'
+    = stylesheet_link_tag    'application', media: 'all'
+  %body{'ng-app': 'toDoList', 'ng-controller': 'MainController as main'}
+    %div{ 'ng-repeat': 'project in main.projects' }
+      {{project.title}}
