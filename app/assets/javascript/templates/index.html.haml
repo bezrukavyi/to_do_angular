@@ -1,0 +1,17 @@
+%md-toolbar{ layout: 'row' }
+  %h3{ 'ng-click': "console.log('fdsfsdfsdf');" } ToDoAngular
+
+%div{ flex: '', layout: 'row' }
+  %md-sidenav.md-sidenav-left{ layout: 'column', 'md-component-id': 'left' }
+  %md-content.min-35
+    %md-list
+      %md-list-item{ 'ng-click': 'main.setContent(project)', 'ng-repeat': 'project in main.projects', 'ng-class': "{ chosed_project: project === main.current_project }" }
+        %p {{ project.title }}
+        %md-divider
+
+  #content{ flex: '', layout: 'column' }
+    %md-card{ 'ng-repeat': 'task in main.current_project.tasks' }
+      %md-card-content
+        %md-checkbox{ 'aria-label': 'task.title', 'ng-model': 'task.checked' }
+          %span{ 'ng-class': "{ checked_task: task.checked }" }
+            {{ task.title }}
