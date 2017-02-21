@@ -21,15 +21,30 @@
     %md-content#content{ flex: '', layout: 'column', 'layout-align': 'start center' }
       %h3 {{ main.currentProject.title }}
 
-      %form.todo-form{ name: 'taskForm', 'md-whiteframe': '4', 'ng-submit': 'main.createTask(main.newTask); reset()' }
-        %input{ type: 'text', required: true, 'ng-model': 'main.newTask.title' }
+      %form.todo-form{ name: 'taskForm', 'md-whiteframe': '4', 'ng-submit': 'main.createTask(main.newTask)', layout: 'row' }
+        %md-input-container.md-block.title-container
+          %textarea{ 'aria-label': 'Title', 'md-maxlength': '150', 'md-no-asterisk': '', name: 'title', 'ng-model': 'main.newTask.title', required: '' }
+          %div.validators{'ng-messages': 'taskForm.title.$error'}
+            %div{'ng-message': 'required'} This is required.
+            %div{'ng-message': 'md-maxlength'} The description must be less than 150 characters long.
         %md-button.md-raised.md-primary{ type: 'submit' } New Task
 
       .todo-list
         %md-card.todo-item-wrap{ 'ng-repeat': 'task in main.tasks | filter:{project_id:main.currentProject.id}' }
           %md-card-content.todo-item{ layout: 'row', 'layout-align': 'space-between center', 'ng-class': "{ 'checked-task': task.checked }" }
-            %md-checkbox.todo-checkbox{ 'aria-label': 'task.title', 'ng-model': 'task.checked' }
-              %span.title {{ task.title }}
+            .todo-params{ layout: 'row', 'layout-align': 'start center' }
+              %md-checkbox.todo-checkbox{ 'aria-label': 'task.title', 'ng-model': 'task.checked' }
+              %form.task-form{ name: 'editTaskForm', 'ng-submit': 'main.updateTask(task)', 'ng-class': "{ 'edit': checkEditedTask(task) }"}
+                %md-input-container.md-block
+                  %textarea.title{ 'aria-label': 'Title', 'md-maxlength': '150', 'md-no-asterisk': '', name: 'title', 'ng-model': 'task.title', required: '', 'ng-readonly': '!editTaskForm.title.edited' }
+                  %div.validators{'ng-messages': 'editTaskForm.title.$error'}
+                    %div{'ng-message': 'required'} This is required.
+                    %div{'ng-message': 'md-maxlength'} The description must be less than 150 characters long.
+
+
+
             %md-actions.todo-actions
-              %md-button.md-icon-button.md-button.md-ink-ripple
-                %md-icon{'ng-click': 'main.deleteTask(task)', 'md-font-set': 'material-icons'} delete
+              %md-button.md-icon-button.md-ink-ripple.md-18
+                %md-icon{'ng-click': 'main.editTask(editTaskForm.title)' } edit
+              %md-button.md-icon-button.md-button.md-ink-ripple.md-18
+                %md-icon{'ng-click': 'main.deleteTask(task)' } delete

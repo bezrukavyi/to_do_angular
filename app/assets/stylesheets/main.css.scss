@@ -1,3 +1,8 @@
+input[readonly], textarea[readonly] {
+  border: 0;
+  cursor: default;
+}
+
 .material-icons {
   outline: none;
 }
@@ -15,6 +20,8 @@
 /* Todo form */
 .todo-form {
   display: flex;
+  justify-content: space-around;
+  align-items: center;
   padding: 1em;
   margin-bottom: 1em;
   border-radius: 2px;
@@ -22,26 +29,9 @@
   max-width: 650px;
   min-height: 50px;
   background-color: white;
-  input {
-    transition: 300ms;
+  .title-container {
     flex: 1;
-    font-size: 16px;
-    color: #757575;
-    background-color: #fafafa;
-    font-family: 'Roboto', Arial, Helvetica, sans-serif;
-    padding: .25em;
-    border: 1px solid lightgray;
-    border-radius: 2px;
-    outline: none;
-  }
-  input:focus {
-    border: 1px solid #1976D2;
-  }
-  input:focus.ng-invalid.ng-dirty.ng-valid-parse {
-    border: 1px solid #dd0031;
-  }
-  button {
-    margin: 0 0 0 15px;
+    margin: 0;
   }
 }
 .todo-list {
@@ -53,12 +43,20 @@
   min-height: 50px;
   margin-bottom: 15px;
 }
+.todo-params {
+  flex: 1;
+}
 .todo-item {
-  transition: 200ms;
   &:hover {
     .todo-actions {
       opacity: 1;
     }
+  }
+  .md-block {
+    margin: 0;
+  }
+  .md-errors-spacer {
+    display: none;
   }
 }
 .todo-checkbox {
@@ -67,6 +65,21 @@
 .todo-actions {
   transition: 300ms;
   opacity: 0;
+  .md-icon-button {
+    margin: 0;
+  }
+}
+.md-icon-button {
+  &.md-18 {
+    margin: 0;
+    padding: 4px;
+    min-height: 30px;
+    height: 30px;
+    width: 30px;
+    .material-icons {
+      font-size: 18px;
+    }
+  }
 }
 .todo-add-button {
   top: auto;
@@ -74,4 +87,7 @@
   bottom: 20px;
   left: auto;
   position: fixed;
+}
+.task-form {
+  width: 100%;
 }

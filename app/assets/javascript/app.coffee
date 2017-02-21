@@ -1,9 +1,10 @@
-@app = angular.module('toDoApp', ['ngMaterial', 'ngRoute', 'templates'])
+@app = angular.module('toDoApp', ['ngMaterial', 'ngRoute', 'ngMessages', 'templates'])
 
 MainController = (project, task) ->
   this.projects = project.all
   this.tasks = task.all
   this.currentProject = this.projects[0]
+  this.editedTask = null
 
   # Project
 
@@ -36,9 +37,17 @@ MainController = (project, task) ->
     this.tasks.push(task)
     this.resetTaskForm()
 
+  this.updateTask = (task) ->
+    console.log('updated success')
+
   this.deleteTask = (task) ->
     index = this.tasks.indexOf(task);
     this.tasks.splice(index, 1) if (index != -1)
+
+  this.editTask = (task) ->
+    return true if task.$invalid
+    this.updateTask(task) if task.edited == true && task.$valid
+    task.edited = !task.edited
 
   this.resetTaskForm()
   return
@@ -60,7 +69,10 @@ MainController = (project, task) ->
     { id: 6, project_id: 1, title: 'Task 6', checked: true }
   ]
 
-@app.config ($mdThemingProvider) ->
-  $mdThemingProvider.theme('default')
+@app.config ($mdThemingProvider, $mdIconProvider) ->
+  $mdThemingProvider
+    .theme('default')
     .primaryPalette('blue')
     .accentPalette('blue')
+  $mdIconProvider
+    .fontSet('md-icons', 'material-icons');
