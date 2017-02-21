@@ -1,8 +1,21 @@
-input[readonly], textarea[readonly] {
-  border: 0;
-  cursor: default;
+.md-errors-spacer {
+  transition: 150ms;
 }
 
+.read-field {
+  input, textarea {
+    transition: 300ms;
+    border-color: rgba(255, 255, 255, 0);
+    cursor: default;
+    pointer-events: none;
+  }
+  .md-errors-spacer {
+    position: relative;
+    margin-top: -25px;
+    visibility: hidden;
+    opacity: 0;
+  }
+}
 .material-icons {
   outline: none;
 }
@@ -55,9 +68,6 @@ input[readonly], textarea[readonly] {
   .md-block {
     margin: 0;
   }
-  .md-errors-spacer {
-    display: none;
-  }
 }
 .todo-checkbox {
   margin: 0;
@@ -80,6 +90,16 @@ input[readonly], textarea[readonly] {
       font-size: 18px;
     }
   }
+  &.md-24 {
+    margin: 0;
+    padding: 4px;
+    min-height: 40px;
+    height: 40px;
+    width: 40px;
+    .material-icons {
+      font-size: 24px;
+    }
+  }
 }
 .todo-add-button {
   top: auto;
@@ -89,5 +109,23 @@ input[readonly], textarea[readonly] {
   position: fixed;
 }
 .task-form {
-  width: 100%;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  md-input-container {
+    width: 100%;
+  }
+}
+
+.project-form {
+  margin: 35px 0 25px 0;
+  .md-block {
+    margin: 0;
+  }
+  .title {
+    text-align: center;
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
 }

@@ -3,10 +3,16 @@
 MainController = (project, task) ->
   this.projects = project.all
   this.tasks = task.all
-  this.currentProject = this.projects[0]
+  this.currentProject = null
   this.editedTask = null
 
-  # Project
+
+  # PROJECT
+
+  this.deleteProject = () ->
+    index = this.projects.indexOf(this.currentProject);
+    this.currentProject = null
+    this.projects.splice(index, 1) if (index != -1)
 
   this.setCurrentProject = (project) ->
     this.currentProject = project if project
@@ -18,10 +24,25 @@ MainController = (project, task) ->
 
   this.createProject = () ->
     project = {
-      id: this.projects.lenght,
+      id: this.projects.length + 1,
       title: 'New project'
     }
     this.projects.push(project)
+    this.setCurrentProject(project)
+
+  this.editProject = (projectForm) ->
+    project = this.currentProject
+    return true if projectForm.$invalid
+    this.updateTask(projectForm, project) if projectForm.edited == true
+    projectForm.edited = !projectForm.edited
+
+  this.updateProject = (projectForm) ->
+    project = this.currentProject
+    return console.log('updated failure') unless projectForm.$valid
+    console.log(project.title)
+    console.log(project.id)
+    console.log('updated success')
+
 
   # TASK
 
@@ -37,22 +58,32 @@ MainController = (project, task) ->
     this.tasks.push(task)
     this.resetTaskForm()
 
-  this.updateTask = (task) ->
-    console.log('updated success')
-
   this.deleteTask = (task) ->
     index = this.tasks.indexOf(task);
     this.tasks.splice(index, 1) if (index != -1)
 
-  this.editTask = (task) ->
-    return true if task.$invalid
-    this.updateTask(task) if task.edited == true && task.$valid
-    task.edited = !task.edited
+  this.editTask = (taskForm, task) ->
+    return true if taskForm.$invalid
+    this.updateTask(taskForm, task) if taskForm.edited == true
+    taskForm.edited = !taskForm.edited
 
-  this.resetTaskForm()
+  this.updateTask = (taskForm, task) ->
+    return console.log('updated failure') unless taskForm.$valid
+    console.log(task.title)
+    console.log(task.checked)
+    console.log(task.id)
+    console.log('updated success')
+
   return
 
+
+#CONTROLLER
+
 @app.controller 'MainController', ['project', 'task', MainController]
+
+
+
+#FACTORIES
 
 @app.factory 'project', ->
   all: [
@@ -68,6 +99,9 @@ MainController = (project, task) ->
     { id: 5, project_id: 2, title: 'Task 5', checked: true }
     { id: 6, project_id: 1, title: 'Task 6', checked: true }
   ]
+
+
+#CONFIG
 
 @app.config ($mdThemingProvider, $mdIconProvider) ->
   $mdThemingProvider

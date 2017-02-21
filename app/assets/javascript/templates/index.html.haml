@@ -1,5 +1,7 @@
 %section{ 'ng-controller': 'MainController as main', flex: '', layout: 'column' }
 
+
+
   .container{ flex: '', layout: 'row' }
     %md-sidenav{ 'md-is-locked-open': 'true', 'md-whiteframe': '4' }
       %md-toolbar
@@ -12,39 +14,69 @@
       %md-list{ role: 'list' }
         %md-list-item.noright{ 'ng-repeat': 'project in main.projects', 'ng-click': 'main.setCurrentProject(project)' }
           %span {{ project.title }}
-
           %md-divider.ng-scope{'ng-if': '!$last'}
 
       %div{ layout: 'row', 'layout-align': 'center' }
         %md-button.md-raised.md-primary{ 'ng-click': 'main.createProject()' } New Project
 
-    %md-content#content{ flex: '', layout: 'column', 'layout-align': 'start center' }
-      %h3 {{ main.currentProject.title }}
+
+
+
+
+    %md-content{ flex: '', layout: 'column', 'layout-align': 'center center', 'ng-if': '!main.currentProject' }
+      %h1 Choose project or create new
+      %div{ layout: 'row', 'layout-align': 'center' }
+        %md-button.md-raised.md-primary{ 'ng-click': 'main.createProject()' } New Project
+
+
+
+    %md-content{ flex: '', layout: 'column', 'layout-align': 'start center', 'ng-if': 'main.currentProject' }
+      %form.project-form{ layout: 'column', name: 'editProjectForm' }
+        %md-input-container.md-block{ 'ng-class': "{ 'read-field': !editProjectForm.edited }" }
+          %input.title{ 'aria-label': 'Title', 'md-maxlength': '25', 'md-no-asterisk': '', required: '', name: 'title', 'ng-model': 'main.currentProject.title' }
+          %div.validators{'ng-messages': 'editProjectForm.title.$error'}
+            %div{'ng-message': 'required'} This is required.
+            %div{'ng-message': 'md-maxlength'} The title must be less than 25 characters long.
+
+        %md-actions.project-actions{ layout: 'row', 'layout-align': 'center' }
+          %md-button.md-icon-button.md-ink-ripple.md-24
+            %md-icon{'ng-click': 'main.editProject(editProjectForm)' } edit
+          %md-button.md-icon-button.md-button.md-ink-ripple.md-24
+            %md-icon{'ng-click': 'main.deleteProject()' } delete
+          %md-button.md-icon-button.md-button.md-ink-ripple.md-24
+            %md-icon{'ng-click': 'main.deleteProject()' } date_range
+
+
+
 
       %form.todo-form{ name: 'taskForm', 'md-whiteframe': '4', 'ng-submit': 'main.createTask(main.newTask)', layout: 'row' }
         %md-input-container.md-block.title-container
-          %textarea{ 'aria-label': 'Title', 'md-maxlength': '150', 'md-no-asterisk': '', name: 'title', 'ng-model': 'main.newTask.title', required: '' }
+          %textarea{ 'aria-label': 'Title', 'md-maxlength': '100', 'md-no-asterisk': '', name: 'title', 'ng-model': 'main.newTask.title', required: '' }
           %div.validators{'ng-messages': 'taskForm.title.$error'}
             %div{'ng-message': 'required'} This is required.
-            %div{'ng-message': 'md-maxlength'} The description must be less than 150 characters long.
+            %div{'ng-message': 'md-maxlength'} The title must be less than 100 characters long.
         %md-button.md-raised.md-primary{ type: 'submit' } New Task
+
+
+
 
       .todo-list
         %md-card.todo-item-wrap{ 'ng-repeat': 'task in main.tasks | filter:{project_id:main.currentProject.id}' }
           %md-card-content.todo-item{ layout: 'row', 'layout-align': 'space-between center', 'ng-class': "{ 'checked-task': task.checked }" }
-            .todo-params{ layout: 'row', 'layout-align': 'start center' }
-              %md-checkbox.todo-checkbox{ 'aria-label': 'task.title', 'ng-model': 'task.checked' }
-              %form.task-form{ name: 'editTaskForm', 'ng-submit': 'main.updateTask(task)', 'ng-class': "{ 'edit': checkEditedTask(task) }"}
-                %md-input-container.md-block
-                  %textarea.title{ 'aria-label': 'Title', 'md-maxlength': '150', 'md-no-asterisk': '', name: 'title', 'ng-model': 'task.title', required: '', 'ng-readonly': '!editTaskForm.title.edited' }
-                  %div.validators{'ng-messages': 'editTaskForm.title.$error'}
-                    %div{'ng-message': 'required'} This is required.
-                    %div{'ng-message': 'md-maxlength'} The description must be less than 150 characters long.
+            %form.task-form{ flex: '', name: 'editTaskForm' }
+              %md-checkbox.todo-checkbox{ 'aria-label': 'task.title', name: 'checked', 'ng-model': 'task.checked', 'ng-change': 'main.updateTask(editTaskForm, task)' }
+              %md-input-container.md-block{ 'ng-class': "{ 'read-field': !editTaskForm.edited }" }
+                %textarea.title{ 'aria-label': 'Title', 'md-maxlength': '100', 'md-no-asterisk': '', required: '', name: 'title', 'ng-model': 'task.title' }
+                %div.validators{'ng-messages': 'editTaskForm.title.$error'}
+                  %div{'ng-message': 'required'} This is required.
+                  %div{'ng-message': 'md-maxlength'} The title must be less than 100 characters long.
 
 
 
             %md-actions.todo-actions
               %md-button.md-icon-button.md-ink-ripple.md-18
-                %md-icon{'ng-click': 'main.editTask(editTaskForm.title)' } edit
+                %md-icon{'ng-click': 'main.editTask(editTaskForm, task)' } edit
               %md-button.md-icon-button.md-button.md-ink-ripple.md-18
                 %md-icon{'ng-click': 'main.deleteTask(task)' } delete
+              %md-button.md-icon-button.md-button.md-ink-ripple.md-18
+                %md-icon{'ng-click': 'main.dateTask(task)' } date_range
