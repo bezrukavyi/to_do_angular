@@ -1,17 +1,35 @@
-%md-toolbar{ layout: 'row' }
-  %h3{ 'ng-click': "console.log('fdsfsdfsdf');" } ToDoAngular
+%section{ 'ng-controller': 'MainController as main', flex: '', layout: 'column' }
 
-%div{ flex: '', layout: 'row' }
-  %md-sidenav.md-sidenav-left{ layout: 'column', 'md-component-id': 'left' }
-  %md-content.min-35
-    %md-list
-      %md-list-item{ 'ng-click': 'main.setContent(project)', 'ng-repeat': 'project in main.projects', 'ng-class': "{ chosed_project: project === main.current_project }" }
-        %p {{ project.title }}
-        %md-divider
+  .container{ flex: '', layout: 'row' }
+    %md-sidenav{ 'md-is-locked-open': 'true', 'md-whiteframe': '4' }
+      %md-toolbar
+        .md-toolbar-tools
+          %h1.md-flex Angular ToDo
 
-  #content{ flex: '', layout: 'column' }
-    %md-card{ 'ng-repeat': 'task in main.current_project.tasks' }
-      %md-card-content
-        %md-checkbox{ 'aria-label': 'task.title', 'ng-model': 'task.checked' }
-          %span{ 'ng-class': "{ checked_task: task.checked }" }
-            {{ task.title }}
+      %md-subheader
+        %span.ng-scope Your projects
+
+      %md-list{ role: 'list' }
+        %md-list-item.noright{ 'ng-repeat': 'project in main.projects', 'ng-click': 'main.setCurrentProject(project)' }
+          %span {{ project.title }}
+
+          %md-divider.ng-scope{'ng-if': '!$last'}
+
+      %div{ layout: 'row', 'layout-align': 'center' }
+        %md-button.md-raised.md-primary{ 'ng-click': 'main.createProject()' } New Project
+
+    %md-content#content{ flex: '', layout: 'column', 'layout-align': 'start center' }
+      %h3 {{ main.currentProject.title }}
+
+      %form.todo-form{ name: 'taskForm', 'md-whiteframe': '4', 'ng-submit': 'main.createTask(main.newTask); reset()' }
+        %input{ type: 'text', required: true, 'ng-model': 'main.newTask.title' }
+        %md-button.md-raised.md-primary{ type: 'submit' } New Task
+
+      .todo-list
+        %md-card.todo-item-wrap{ 'ng-repeat': 'task in main.tasks | filter:{project_id:main.currentProject.id}' }
+          %md-card-content.todo-item{ layout: 'row', 'layout-align': 'space-between center', 'ng-class': "{ 'checked-task': task.checked }" }
+            %md-checkbox.todo-checkbox{ 'aria-label': 'task.title', 'ng-model': 'task.checked' }
+              %span.title {{ task.title }}
+            %md-actions.todo-actions
+              %md-button.md-icon-button.md-button.md-ink-ripple
+                %md-icon{'ng-click': 'main.deleteTask(task)', 'md-font-set': 'material-icons'} delete
