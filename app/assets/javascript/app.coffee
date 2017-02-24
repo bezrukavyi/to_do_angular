@@ -1,4 +1,10 @@
-@app = angular.module('toDoApp', ['ngMaterial', 'ngRoute', 'ngMessages', 'templates'])
+@app = angular.module('toDoApp', [
+  'ngMaterial',
+  'ngRoute',
+  'ngResource',
+  'ngMessages',
+  'templates'
+])
 
 @app.config ($mdThemingProvider, $mdIconProvider) ->
   $mdThemingProvider

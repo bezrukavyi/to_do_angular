@@ -7,11 +7,11 @@
 %md-content{ flex: '', 'ng-if': 'projects.currentProject' }
 
   %form.project-form{ layout: 'column', 'layout-align': 'center center', name: 'editProjectForm' }
-    %md-input-container.md-block{ 'ng-class': "{ 'read-field': !editProjectForm.edited }" }
-      %input.title{ 'aria-label': 'Title', 'md-maxlength': '25', 'md-no-asterisk': '', required: '', name: 'title', 'ng-model': 'projects.currentProject.title' }
+    %md-input-container.md-block.project-title{ 'ng-class': "{ 'read-field': !editProjectForm.edited }" }
+      %textarea.title{ 'aria-label': 'Title', 'md-maxlength': '50', 'md-no-asterisk': '', required: '', name: 'title', 'ng-model': 'projects.currentProject.title' }
       %div.validators{'ng-messages': 'editProjectForm.title.$error'}
         %div{'ng-message': 'required'} This is required.
-        %div{'ng-message': 'md-maxlength'} The title must be less than 25 characters long.
+        %div{'ng-message': 'md-maxlength'} The title must be less than 50 characters long.
 
     %md-actions.project-actions{ layout: 'row', 'layout-align': 'center' }
       %md-button.md-icon-button.md-ink-ripple.md-24
@@ -26,5 +26,5 @@
     %tasks_create{ ctrl: 'tasks', project: 'projects.currentProject' }
 
     .todo-list
-      %md-card.todo-item-wrap{ 'ng-repeat': 'task in tasks.all | filter:{project_id:projects.currentProject.id}' }
+      %md-card.todo-item-wrap{ 'ng-repeat': 'task in projects.currentProject.tasks' }
         %tasks_item{ item: 'task', ctrl: 'tasks' }

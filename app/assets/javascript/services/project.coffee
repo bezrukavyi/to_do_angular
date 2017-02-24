@@ -1,11 +1,7 @@
-Project = ($filter) ->
-  this.all = [
-    { id: 1, title: 'Project 1' },
-    { id: 2, title: 'Project 2' }
-  ]
+Project = ($filter, $resource) ->
+  $resource '/api/projects/:id', { id: '@id' },
+    index:
+      method: 'GET'
+      isArray: true
 
-  this.show = (id) ->
-    @project = $filter('filter')(this.all, { id: id })[0];
-  return
-
-angular.module('toDoApp').service 'Project', ['$filter', Project]
+angular.module('toDoApp').factory 'Project', ['$filter', '$resource', Project]

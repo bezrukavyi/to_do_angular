@@ -1,7 +1,12 @@
 ProjectsController = (Project, $location, $routeParams) ->
 
-  this.all = Project.all
-  this.currentProject = Project.show($routeParams.projectId)
+  this.all = Project.index()
+  console.log(this.all)
+
+  if $routeParams.projectId
+    this.currentProject = Project.get(id: $routeParams.projectId)
+  else
+    this.currentProject = null
 
   this.deleteProject = () ->
     index = this.all.indexOf(this.currentProject);

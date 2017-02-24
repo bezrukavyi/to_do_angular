@@ -5,5 +5,6 @@
 //= require angular-messages
 //= require angular-animate
 //= require angular-material
+//= require angular-resource/angular-resource
 //= require_tree .
 //= require_tree ./templates
