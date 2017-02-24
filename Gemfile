@@ -23,8 +23,16 @@ gem 'haml-rails'
 
 gem 'angular-rails-templates'
 
+gem 'active_model_serializers'
+
 group :development, :test do
   gem 'byebug', platform: :mri
+  gem 'factory_girl_rails'
+  gem 'letter_opener_web'
+  gem 'pry'
+  gem 'rspec-rails'
+  gem 'shoulda'
+  gem 'ffaker'
 end
 
 group :development do
@@ -32,6 +40,14 @@ group :development do
   gem 'listen', '~> 3.0.5'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+end
+
+group :test do
+  gem 'capybara'
+  gem 'capybara-screenshot'
+  gem 'database_cleaner'
+  gem 'poltergeist'
+  gem 'shoulda-matchers'
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
