@@ -1,0 +1,7 @@
+%md-list{ role: 'list' }
+  %md-list-item.noright{ ng_repeat: 'project in projects.all', 'ng-click': 'projects.setCurrentProject(project)', 'ng-href': '#!/projects/{{project.id}}' }
+    %span {{ project.title }}
+    %md-divider.ng-scope{ ng_if: '!$last' }
+
+%div{ layout: 'row', 'layout-align': 'center' }
+  %md-button.md-raised.md-primary{ 'ng-click': 'projects.createProject()' } New Project

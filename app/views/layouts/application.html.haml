@@ -8,4 +8,16 @@
     = csrf_meta_tags
     = javascript_include_tag 'application'
     = stylesheet_link_tag    'application', media: 'all'
-  %body{ 'ng-view': 'true', layout: 'row' }
+
+  %body{ layout: 'row' }
+    %md-sidenav{ 'md-is-locked-open': 'true', 'md-whiteframe': '4' }
+      %md-toolbar
+        .md-toolbar-tools
+          %h1.md-flex Angular ToDo
+
+      %md-subheader
+        %span.ng-scope Your projects
+
+      %projects_list
+
+    %ng-view{ flex: '', layout: 'column' }

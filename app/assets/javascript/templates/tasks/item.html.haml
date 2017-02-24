@@ -1,0 +1,16 @@
+%md-card-content.todo-item{ layout: 'row', 'layout-align': 'space-between center', 'ng-class': "{ 'checked-task': item.checked }" }
+  %form.task-edit{ flex: '', name: 'editTaskForm' }
+    %md-checkbox.todo-checkbox{ 'aria-label': 'item.title', name: 'checked', 'ng-model': 'item.checked', 'ng-change': 'ctrl.updateTask(editTaskForm, item)' }
+    %md-input-container.md-block{ 'ng-class': "{ 'read-field': !editTaskForm.edited }" }
+      %textarea.title{ 'aria-label': 'Title', 'md-maxlength': '100', 'md-no-asterisk': '', required: '', name: 'title', 'ng-model': 'item.title' }
+      %div.validators{'ng-messages': 'editTaskForm.title.$error'}
+        %div{'ng-message': 'required'} This is required.
+        %div{'ng-message': 'md-maxlength'} The title must be less than 100 characters long.
+
+  %md-actions.todo-actions
+    %md-button.md-icon-button.md-ink-ripple.md-18
+      %md-icon{'ng-click': 'ctrl.editTask(editTaskForm, item)' } edit
+    %md-button.md-icon-button.md-button.md-ink-ripple.md-18
+      %md-icon{'ng-click': 'ctrl.deleteTask(item)' } delete
+    %md-button.md-icon-button.md-button.md-ink-ripple.md-18
+      %md-icon{'ng-click': 'ctrl.dateTask(item)' } date_range
