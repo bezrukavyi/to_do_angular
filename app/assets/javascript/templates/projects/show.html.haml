@@ -1,7 +1,7 @@
 %md-content{ flex: '', layout: 'column', 'layout-align': 'center center', 'ng-if': '!projects.currentProject' }
   %h1 Choose project or create new
   %div{ layout: 'row', 'layout-align': 'center' }
-    %md-button.md-raised.md-primary{ 'ng-click': 'projects.createProject()' } New Project
+    %md-button.md-raised.md-primary{ 'ng-click': 'projects.create()' } New Project
 
 
 %md-content{ flex: '', 'ng-if': 'projects.currentProject' }
@@ -15,11 +15,11 @@
 
     %md-actions.project-actions{ layout: 'row', 'layout-align': 'center' }
       %md-button.md-icon-button.md-ink-ripple.md-24
-        %md-icon{'ng-click': 'projects.editProject(editProjectForm)' } edit
+        %md-icon{'ng-click': 'projects.edit(editProjectForm, projects.currentProject)' } edit
       %md-button.md-icon-button.md-button.md-ink-ripple.md-24
-        %md-icon{'ng-click': 'projects.deleteProject()' } delete
+        %md-icon{'ng-click': 'projects.delete(projects.currentProject)' } delete
       %md-button.md-icon-button.md-button.md-ink-ripple.md-24
-        %md-icon{'ng-click': 'projects.deleteProject()' } date_range
+        %md-icon{'ng-click': 'projects.delete()' } date_range
 
 
   .tasks-content{ layout: 'column', 'layout-align': 'center center', 'ng-controller': 'TasksController as tasks' }

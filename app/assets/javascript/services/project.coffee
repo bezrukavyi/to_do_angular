@@ -3,5 +3,11 @@ Project = ($filter, $resource) ->
     index:
       method: 'GET'
       isArray: true
+    create:
+      method: 'POST'
+    update:
+      method: 'PATCH'
+    delete:
+      method: 'DELETE'
 
 angular.module('toDoApp').factory 'Project', ['$filter', '$resource', Project]
