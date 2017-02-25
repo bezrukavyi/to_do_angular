@@ -4,7 +4,8 @@ angular.module('toDoApp').directive 'tasksItem', () ->
     replace: true,
     scope: {
       ctrl: '=',
-      item: '=',
+      task: '=',
+      project: '='
     },
     templateUrl: 'tasks/item.html'
    }

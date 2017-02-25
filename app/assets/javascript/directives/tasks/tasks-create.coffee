@@ -6,5 +6,5 @@ angular.module('toDoApp').directive 'tasksCreate', () ->
       ctrl: '=',
       project: '='
     },
-    templateUrl: 'tasks/form.html'
+    templateUrl: 'tasks/form-create.html'
    }

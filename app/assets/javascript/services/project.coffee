@@ -1,4 +1,4 @@
-Project = ($filter, $resource) ->
+Project = ($resource) ->
   $resource '/api/projects/:id', { id: '@id' },
     index:
       method: 'GET'
@@ -10,4 +10,4 @@ Project = ($filter, $resource) ->
     delete:
       method: 'DELETE'
 
-angular.module('toDoApp').factory 'Project', ['$filter', '$resource', Project]
+angular.module('toDoApp').factory 'Project', ['$resource', Project]

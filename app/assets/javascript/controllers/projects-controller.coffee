@@ -20,7 +20,7 @@ ProjectsController = (Project, $routeParams, $location, TodoToast) ->
   ctrl.delete = (project) ->
     Project.delete(id: project.id).$promise.then (
       (response) ->
-        index = ctrl.all.indexOf(project.id);
+        index = ctrl.all.indexOf(project);
         ctrl.currentProject = null if project.id == ctrl.currentProject.id
         ctrl.all.splice(index, 1) if (index != -1)
         TodoToast.success("Project success deleted")
@@ -30,8 +30,7 @@ ProjectsController = (Project, $routeParams, $location, TodoToast) ->
   ctrl.create = () ->
     Project.create(title: 'New project').$promise.then (
       (response) ->
-        new_project = { id: response.id, title: response.title }
-        ctrl.all.push(new_project)
+        ctrl.all.push(response)
         $location.path("/projects/#{response.id}")
         TodoToast.success('Project success created')
       ), (response) ->

@@ -1,4 +1,4 @@
-%form.todo-form{ name: 'taskForm', 'md-whiteframe': '4', 'ng-submit': 'ctrl.createTask(ctrl.newTask, project)', layout: 'row' }
+%form.todo-form{ name: 'taskForm', 'md-whiteframe': '4', 'ng-submit': 'ctrl.create(taskForm, project)', layout: 'row' }
   %md-input-container.md-block.title-container
     %textarea{ 'aria-label': 'Title', 'md-maxlength': '100', 'md-no-asterisk': '', name: 'title', 'ng-model': 'ctrl.newTask.title', required: '' }
     %div.validators{'ng-messages': 'taskForm.title.$error'}

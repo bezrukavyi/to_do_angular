@@ -1,40 +1,49 @@
-TasksController = (Task) ->
+TasksController = (Task, TodoToast) ->
+  ctrl = this
+  ctrl.editedTask = null
 
-  this.all = Task.all
+  ctrl.create = (form, project) ->
+    return if form.$invalid
+    options = { project_id: project.id, title: form.title.$viewValue }
+    Task.create(options).$promise.then (
+      (response) ->
+        project.tasks.push(response)
+        TodoToast.success("Task '#{response.title}' success created")
+      ), (response) ->
+        TodoToast.error(response.data.error)
 
-  this.editedTask = null
+  ctrl.delete = (task, project) ->
+    Task.delete(id: task.id).$promise.then (
+      (response) ->
+        index = project.tasks.indexOf(task)
+        project.tasks.splice(index, 1) if (index != -1)
+        TodoToast.success("Task '#{response.title}' success deleted")
+      ), (response) ->
+        TodoToast.error(response.data.error)
 
-  this.resetTaskForm = () ->
-    this.newTask = {
-      title: '',
-      checked: false
+  ctrl.edit = (form, task) ->
+    return true if form.$invalid
+    ctrl.update(form, task) if form.edited == true
+    form.edited = !form.edited
+
+  ctrl.update = (form, task) ->
+    return if form.$invalid
+    options = {
+      id: task.id,
+      title: form.title.$viewValue,
+      checked: form.checked.$viewValue
     }
+    Task.update(options).$promise.then (
+      (response) ->
+        TodoToast.success("Task '#{response.title}' success updated")
+      ), (response) ->
+        TodoToast.error(response.data.error)
 
-  this.createTask = (task, project) ->
-    task.id = this.all.length
-    task.project_id = project.id
-    this.all.push(task)
-    this.resetTaskForm()
-
-  this.deleteTask = (task) ->
-    index = this.all.indexOf(task);
-    this.all.splice(index, 1) if (index != -1)
-
-  this.editTask = (taskForm, task) ->
-    return true if taskForm.$invalid
-    this.updateTask(taskForm, task) if taskForm.edited == true
-    taskForm.edited = !taskForm.edited
-
-  this.updateTask = (taskForm, task) ->
-    return console.log('updated failure') unless taskForm.$valid
-    console.log(task.title)
-    console.log(task.checked)
-    console.log(task.id)
-    console.log('updated success')
-
-
-  this.resetTaskForm()
   return
 
 
-angular.module('toDoApp').controller 'TasksController', ['Task', TasksController]
+angular.module('toDoApp').controller 'TasksController', [
+  'Task',
+  'TodoToast',
+  TasksController
+]

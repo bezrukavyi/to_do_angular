@@ -27,4 +27,4 @@
 
     .todo-list
       %md-card.todo-item-wrap{ 'ng-repeat': 'task in projects.currentProject.tasks' }
-        %tasks_item{ item: 'task', ctrl: 'tasks' }
+        %tasks_item{ ctrl: 'tasks', task: 'task', project: 'projects.currentProject' }
