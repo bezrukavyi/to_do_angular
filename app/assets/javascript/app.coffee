@@ -3,7 +3,10 @@
   'ngRoute',
   'ngResource',
   'ngMessages',
-  'templates'
+  'templates',
+  'ipCookie',
+  'ng-token-auth',
+  'ngCookies'
 ])
 
 @app.config ($mdThemingProvider, $mdIconProvider) ->

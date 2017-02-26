@@ -1,7 +1,5 @@
 module Api
   class TasksController < ApplicationController
-    skip_before_action :verify_authenticity_token
-
     def update
       @task = Task.find(params[:id])
       if @task.update_attributes(allowed_params)

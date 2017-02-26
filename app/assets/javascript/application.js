@@ -6,5 +6,8 @@
 //= require angular-animate
 //= require angular-material
 //= require angular-resource/angular-resource
+//= require angular-cookie
+//= require angular-cookies
+//= require ng-token-auth
 //= require_tree .
 //= require_tree ./templates

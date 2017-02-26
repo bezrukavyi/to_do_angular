@@ -23,7 +23,21 @@ gem 'haml-rails'
 
 gem 'angular-rails-templates'
 
+gem 'angular_rails_csrf'
+
 gem 'active_model_serializers'
+
+gem 'devise_token_auth'
+
+gem 'rack-cors'
+
+gem 'omniauth'
+
+gem 'omniauth-facebook'
+
+gem 'omniauth-google-oauth2'
+
+gem 'rack-cors'
 
 group :development, :test do
   gem 'byebug', platform: :mri
@@ -33,6 +47,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'shoulda'
   gem 'ffaker'
+  gem 'selenium-webdriver'
 end
 
 group :development do

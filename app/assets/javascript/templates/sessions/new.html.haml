@@ -1,0 +1,8 @@
+%form#new_user{ name: 'loginForm', 'ng-submit': 'session.signIn(loginForm)', role: 'form' }
+  .form-group
+    %label{ for: 'email' } Email
+    %input#email.form-control{ name: 'email', 'ng-model': 'ctrl.newSession.email', required: 'required', type: 'email' }/
+  .form-group
+    %label{ for: 'password' } Password
+    %input#password.form-control{ name: 'password', 'ng-model': 'ctrl.newSession.password', required: 'required', type: 'password' }/
+  %button.btn.btn-primary.btn-lg{ type: 'submit' } Log in

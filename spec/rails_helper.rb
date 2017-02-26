@@ -7,6 +7,8 @@ if Rails.env.production?
 end
 require 'spec_helper'
 require 'rspec/rails'
+require 'capybara/rspec'
+require 'capybara-screenshot/rspec'
 
 %w(support).each do |folder|
   Dir[Rails.root.join("spec/#{folder}/**/*.rb")].each do |component|
@@ -21,7 +23,11 @@ RSpec.configure do |config|
 
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
-  Capybara.javascript_driver = :poltergeist
+  Capybara.register_driver :selenium_chrome do |app|
+    Capybara::Selenium::Driver.new(app, browser: :chrome)
+  end
+
+  Capybara.javascript_driver = :selenium_chrome
 
   config.use_transactional_fixtures = false
 
