@@ -1,6 +1,6 @@
 //= require angular
 //= require angular-rails-templates
-//= require angular-route
+//= require angular-ui-router
 //= require angular-aria
 //= require angular-messages
 //= require angular-animate

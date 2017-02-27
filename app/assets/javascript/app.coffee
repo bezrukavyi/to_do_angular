@@ -1,6 +1,6 @@
 @app = angular.module('toDoApp', [
   'ngMaterial',
-  'ngRoute',
+  'ui.router',
   'ngResource',
   'ngMessages',
   'templates',

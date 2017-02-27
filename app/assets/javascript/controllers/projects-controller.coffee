@@ -1,4 +1,4 @@
-ProjectsController = (Project, $routeParams, $location, TodoToast) ->
+ProjectsController = (Project, $stateParams, $location, TodoToast) ->
   ctrl = this
   ctrl.currentProject = null
   ctrl.all = null
@@ -55,13 +55,13 @@ ProjectsController = (Project, $routeParams, $location, TodoToast) ->
         TodoToast.error(response.data.error)
 
   ctrl.index()
-  ctrl.show(id: $routeParams.projectId) if $routeParams.projectId
+  ctrl.show(id: $stateParams.projectId) if $stateParams.projectId
 
   return
 
 angular.module('toDoApp').controller 'ProjectsController', [
   'Project',
-  '$routeParams',
+  '$stateParams',
   '$location',
   'TodoToast',
   ProjectsController
