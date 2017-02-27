@@ -1,4 +1,4 @@
-UsersController = ($auth, TodoToast) ->
+UsersController = ($auth, TodoToast, Omniauth) ->
   ctrl = this
 
   ctrl.new = {
@@ -23,6 +23,9 @@ UsersController = ($auth, TodoToast) ->
       return
     )
 
+  ctrl.omniauth = (provider) ->
+    Omniauth.call(provider)
+
   return
 
-angular.module('toDoApp').controller 'UsersController', ['$auth', 'TodoToast', UsersController]
+angular.module('toDoApp').controller 'UsersController', ['$auth', 'TodoToast', 'Omniauth', UsersController]

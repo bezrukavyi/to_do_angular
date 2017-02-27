@@ -22,15 +22,5 @@ module ToDoAngular
       g.test_framework :rspec
       g.fixture_replacement :factory_girl, dir: 'spec/factories'
     end
-
-    config.middleware.use Rack::Cors do
-      allow do
-        origins '*'
-        resource '*',
-                 headers: :any,
-                 expose: ['access-token', 'expiry', 'token-type', 'uid', 'client'],
-                 methods: [:get, :post, :options, :delete, :put]
-      end
-    end
   end
 end

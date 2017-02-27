@@ -16,3 +16,14 @@
     .accentPalette('blue')
   $mdIconProvider
     .fontSet('md-icons', 'material-icons');
+
+
+
+@app.config ($authProvider) ->
+  $authProvider.configure {
+    authProviderPaths: {
+      github:   '/auth/github',
+      facebook: '/auth/facebook',
+      google:   '/auth/google_oauth2'
+    }
+  }

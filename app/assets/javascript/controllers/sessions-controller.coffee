@@ -1,4 +1,4 @@
-SessionsController = ($auth, $rootScope, $state, TodoToast) ->
+SessionsController = ($auth, $rootScope, $state, TodoToast, Omniauth) ->
   ctrl = this
   ctrl.new = { }
 
@@ -15,6 +15,9 @@ SessionsController = ($auth, $rootScope, $state, TodoToast) ->
       ), (response) ->
         TodoToast.error(response.errors[0])
 
+  ctrl.omniauth = (provider) ->
+    Omniauth.call(provider)
+
   return
 
-angular.module('toDoApp').controller 'SessionsController', ['$auth', '$rootScope', '$state', 'TodoToast', SessionsController]
+angular.module('toDoApp').controller 'SessionsController', ['$auth', '$rootScope', '$state', 'TodoToast', 'Omniauth', SessionsController]

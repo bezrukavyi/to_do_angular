@@ -1,6 +1,7 @@
 %md-content#content{ flex: '', layout: 'vertical' }
   %form{ name: 'newSession', 'ng-submit': 'session.signIn(newSession)', role: 'form', layout: 'row', 'layout-align': 'center center', 'layout-fill': '' }
     %md-whiteframe.md-whiteframe-z1{ flex: '30', layout: 'column', 'layout-padding': '' }
+
       %md-content{ layout: 'column', 'layout-align': 'stretch center' }
         %md-input-container.md-block
           %label Email
@@ -8,6 +9,11 @@
         %md-input-container.md-block
           %label Password
           %input{ 'ng-model': 'session.new.password', type: 'password' }
+
+      %md-input-container.omniauth-container
+        %md-button.md-raised.md-primary{ 'ng-click': "session.omniauth('google')" } Google+
+        %md-button.md-raised.md-primary{ 'ng-click': "session.omniauth('facebook')" } Facebook
+
       %md-input-container{ layout: 'column', 'layout-align': 'center center' }
         %md-button.md-raised{ 'ui-sref': 'sign_up' } Register
         %md-button.md-raised.md-primary{ type: 'submit' } Login
