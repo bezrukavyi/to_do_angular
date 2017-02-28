@@ -10,15 +10,4 @@
     = stylesheet_link_tag    'application', media: 'all'
 
   %body{ layout: 'row' }
-    %md-sidenav.view-slide-in{ 'ng-if': 'user.signedIn', 'md-is-locked-open': 'true', 'md-whiteframe': '4' }
-      %md-toolbar
-        .md-toolbar-tools
-          %h1.md-flex Angular ToDo
-        %a{ 'ng-click': 'signOut()' } Sign out
-
-      %md-subheader
-        %span.ng-scope Your projects
-
-      %projects_list
-
-    %ui-view.view-slide-in{ flex: '', layout: 'column' }
+    %ui-view{ flex: '', layout: 'row' }

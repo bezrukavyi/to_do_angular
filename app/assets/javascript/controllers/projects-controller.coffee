@@ -15,6 +15,7 @@ ProjectsController = (Project, $stateParams, $location, TodoToast) ->
       (response) ->
         ctrl.currentProject = response
       ), (response) ->
+        ctrl.undefinedProject = true
         TodoToast.error(response.data.error)
 
   ctrl.delete = (project) ->

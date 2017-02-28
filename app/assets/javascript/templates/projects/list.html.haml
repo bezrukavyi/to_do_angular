@@ -1,7 +1,18 @@
-%md-list{ role: 'list' }
-  %md-list-item.noright{ ng_repeat: 'project in projects.all', 'ng-click': 'projects.setCurrentProject(project)', 'ng-href': '#!/projects/{{project.id}}' }
-    %span {{ project.title }}
-    %md-divider.ng-scope{ ng_if: '!$last' }
+%md-sidenav.view-slide-in{ 'md-is-locked-open': 'true', 'md-whiteframe': '4' }
+  %md-toolbar
+    .md-toolbar-tools
+      %h1.md-flex Angular ToDo
+    %a{ 'ng-click': 'signOut()' } Sign out
 
-%div{ layout: 'row', 'layout-align': 'center' }
-  %md-button.md-raised.md-primary{ 'ng-click': 'projects.create()' } New Project
+  %md-subheader
+    %span.ng-scope Your projects
+
+  %md-list{ role: 'list' }
+    %md-list-item.noright{ ng_repeat: 'project in projects.all', 'ng-click': 'projects.setCurrentProject(project)', 'ng-href': '#!/projects/{{project.id}}' }
+      %span {{ project.title }}
+      %md-divider.ng-scope{ ng_if: '!$last' }
+
+  %div{ layout: 'row', 'layout-align': 'center' }
+    %md-button.md-raised.md-primary{ 'ng-click': 'projects.create()' } New Project
+
+%ui-view.view-slide-in{ flex: '', layout: 'row' }
