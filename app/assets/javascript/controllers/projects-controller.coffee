@@ -1,4 +1,4 @@
-ProjectsController = (Project, $stateParams, $location, TodoToast) ->
+ProjectsController = (Project, $stateParams, $state, $filter, TodoToast) ->
   ctrl = this
   ctrl.currentProject = null
   ctrl.all = null
@@ -15,15 +15,14 @@ ProjectsController = (Project, $stateParams, $location, TodoToast) ->
       (response) ->
         ctrl.currentProject = response
       ), (response) ->
-        ctrl.undefinedProject = true
+        ctrl.currentProject = null
         TodoToast.error(response.data.error)
 
   ctrl.delete = (project) ->
     Project.delete(id: project.id).$promise.then (
       (response) ->
-        index = ctrl.all.indexOf(project);
-        ctrl.currentProject = null if project.id == ctrl.currentProject.id
-        ctrl.all.splice(index, 1) if (index != -1)
+        ctrl.delete_from_list(ctrl.currentProject)
+        ctrl.currentProject = null
         TodoToast.success("Project success deleted")
       ), (response) ->
         TodoToast.error(response.data.error)
@@ -32,7 +31,7 @@ ProjectsController = (Project, $stateParams, $location, TodoToast) ->
     Project.create(title: 'New project').$promise.then (
       (response) ->
         ctrl.all.push(response)
-        $location.path("/projects/#{response.id}")
+        ctrl.currentProject = response
         TodoToast.success('Project success created')
       ), (response) ->
         TodoToast.error(response.data.error)
@@ -55,15 +54,28 @@ ProjectsController = (Project, $stateParams, $location, TodoToast) ->
       ), (response) ->
         TodoToast.error(response.data.error)
 
+  ctrl.delete_from_list = (project) ->
+    index = ctrl.all.indexOf($filter('filter')(ctrl.all, id: project.id)[0])
+    ctrl.all.splice(index, 1) if (index != -1)
+
   ctrl.index()
-  ctrl.show(id: $stateParams.projectId) if $stateParams.projectId
+  $state.transitionTo('project.list')
 
   return
+
+
+
+
+
+
+
+
 
 angular.module('toDoApp').controller 'ProjectsController', [
   'Project',
   '$stateParams',
-  '$location',
+  '$state',
+  '$filter',
   'TodoToast',
   ProjectsController
 ]

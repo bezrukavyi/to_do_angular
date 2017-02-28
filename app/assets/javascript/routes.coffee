@@ -14,22 +14,18 @@ angular.module('toDoApp').config ['$stateProvider', '$urlRouterProvider', ($stat
     controllerAs: 'user',
     resolve: auth: redirectAuthed
 
-  .state 'projects',
-    url: '/projects'
+  .state 'project',
+    url: '/'
     controller: 'ProjectsController'
     controllerAs: 'projects'
-    templateUrl: 'projects/list.html',
+    templateUrl: 'projects/show.html',
     resolve: auth: redirectAuth
 
-  .state 'projects.show',
-    url: '/:projectId'
-    controller: 'ProjectsController',
-    controllerAs: 'projects'
-    parent: 'projects'
-    templateUrl: 'projects/show.html'
+  .state 'project.list',
+    templateUrl: 'projects/list.html'
 
 
-  $urlRouterProvider.otherwise '/projects'
+  $urlRouterProvider.otherwise '/'
 
   return
 ]
@@ -45,7 +41,7 @@ redirectAuthed = ($auth, $state, TodoToast) ->
   $auth.validateUser()
     .then(() ->
       TodoToast.error('You have already sined in')
-      $state.go 'index'
+      $state.go 'project'
       return
     )
     .catch(() ->
