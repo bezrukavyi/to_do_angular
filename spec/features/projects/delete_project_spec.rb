@@ -9,12 +9,11 @@ feature 'Delete project', type: :feature, js: true do
     @project = create :project, user: user
     sign_in email: user.email
     visit '#!/'
-    sleep 2
+    sleep 1
+    choose_project(@project)
   end
 
   scenario 'user can delete project' do
-    visit '#!/'
-    choose_project(@project)
     delete_project
     expect(page).to have_content("Project '#{@project.title}' success deleted")
     check_hidden_title(@project, :title, false)

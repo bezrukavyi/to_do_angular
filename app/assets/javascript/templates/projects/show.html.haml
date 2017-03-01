@@ -1,31 +1,31 @@
 %ui-view.view-slide-in{ layout: 'row' }
 
-%md-content{ flex: '', layout: 'column', 'layout-align': 'center center', 'ng-if': '!projects.currentProject' }
+%md-content{ flex: '', layout: 'column', layout_align: 'center center', ng_if: '!projects.currentProject' }
   %h1 Choose project or create new
-  %div{ layout: 'row', 'layout-align': 'center' }
+  %div{ layout: 'row', layout_align: 'center' }
     %md-button.md-raised.md-primary{ 'ng-click': 'projects.create()' } New Project
 
 
-%md-content{ flex: '', 'ng-if': 'projects.currentProject' }
+%md-content{ flex: '', ng_if: 'projects.currentProject' }
 
-  %form#project-form{ layout: 'column', 'layout-align': 'center center', name: 'editProjectForm' }
+  %form#project-form{ layout: 'column', layout_align: 'center center', name: 'editProjectForm' }
     %md-input-container.md-block.project-title{ 'ng-class': "{ 'read-field': !editProjectForm.edited }" }
-      %textarea#title-field.title{ 'aria-label': 'Title', 'md-maxlength': '50', 'md-no-asterisk': '', required: '', name: 'title', 'ng-model': 'projects.currentProject.title' }
+      %textarea#title-field.title{ 'aria-label': 'Title', 'md-maxlength': '50', 'md-no-asterisk': '', required: '', name: 'title', ng_model: 'projects.currentProject.title' }
       %span.hidden {{ projects.currentProject.title }}
-      %div.validators{'ng-messages': 'editProjectForm.title.$error'}
-        %div{'ng-message': 'required'} This is required.
-        %div{'ng-message': 'md-maxlength'} The title must be less than 50 characters long.
+      %div.validators{ ng_messages: 'editProjectForm.title.$error' }
+        %div{ ng_message: 'required' } This is required.
+        %div{ ng_message: 'md-maxlength' } The title must be less than 50 characters long.
 
-    %md-actions.project-actions{ layout: 'row', 'layout-align': 'center' }
+    %md-actions.project-actions{ layout: 'row', layout_align: 'center' }
       %md-button#edit-project.md-icon-button.md-ink-ripple.md-24
-        %md-icon{'ng-click': 'projects.edit(editProjectForm, projects.currentProject)' } edit
+        %md-icon{ 'ng-click': 'projects.edit(editProjectForm, projects.currentProject)' } edit
       %md-button#delete-project.md-icon-button.md-button.md-ink-ripple.md-24
-        %md-icon{'ng-click': 'projects.delete(projects.currentProject)' } delete
+        %md-icon{ 'ng-click': 'projects.delete(projects.currentProject)' } delete
       %md-button.md-icon-button.md-button.md-ink-ripple.md-24
         %md-icon{ } date_range
 
 
-  .tasks-content{ layout: 'column', 'layout-align': 'center center', 'ng-controller': 'TasksController as tasks' }
+  .tasks-content{ layout: 'column', layout_align: 'center center', ng_controller: 'TasksController as tasks' }
     %tasks_create{ ctrl: 'tasks', project: 'projects.currentProject' }
 
     .todo-list

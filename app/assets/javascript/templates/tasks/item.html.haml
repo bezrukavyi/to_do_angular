@@ -1,12 +1,12 @@
-%md-card-content.todo-item{ layout: 'row', 'layout-align': 'space-between center', 'ng-class': "{ 'checked-task': task.checked }" }
+%md-card-content.todo-item{ layout: 'row', layout_align: 'space-between center', 'ng-class': "{ 'checked-task': task.checked }" }
   %form.task-edit{ id: 'task-form-{{task.id}}', flex: '', name: 'editTaskForm' }
-    %md-checkbox.todo-checkbox{ id: 'task-checkbox-{{task.id}}', 'aria-label': 'Checkbox', name: 'checked', 'ng-model': 'task.checked', 'ng-change': 'ctrl.update(editTaskForm, task)' }
+    %md-checkbox.todo-checkbox{ id: 'task-checkbox-{{task.id}}', 'aria-label': 'Checkbox', name: 'checked', ng_model: 'task.checked', 'ng-change': 'ctrl.update(editTaskForm, task)' }
     %md-input-container.md-block{ 'ng-class': "{ 'read-field': !editTaskForm.edited }" }
-      %textarea.title{ id: 'task-title-{{task.id}}', 'aria-label': 'Title', 'md-maxlength': '100', 'md-no-asterisk': '', required: '', name: 'title', 'ng-model': 'task.title' }
+      %textarea.title{ id: 'task-title-{{task.id}}', 'aria-label': 'Title', 'md-maxlength': '100', 'md-no-asterisk': '', required: '', name: 'title', ng_model: 'task.title' }
       %span.hidden {{ task.title }}
-      %div.validators{'ng-messages': 'editTaskForm.title.$error'}
-        %div{'ng-message': 'required'} This is required.
-        %div{'ng-message': 'md-maxlength'} The title must be less than 100 characters long.
+      %div.validators{ng_messages: 'editTaskForm.title.$error'}
+        %div{ng_message: 'required'} This is required.
+        %div{ng_message: 'md-maxlength'} The title must be less than 100 characters long.
 
   %md-actions.todo-actions
     %md-button.md-icon-button.md-ink-ripple.md-18

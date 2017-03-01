@@ -8,9 +8,9 @@
     %span.ng-scope Your projects
 
   %md-list{ role: 'list' }
-    %md-list-item.noright.project-link{ ng_repeat: 'project in projects.all', 'ng-click': 'projects.setCurrentProject(project)', 'ng-click': 'projects.show({id: project.id})' }
+    %md-list-item.noright.project-link{ ng_repeat: 'project in projects.all', 'ng-click': 'projects.show({id: project.id})' }
       %span {{ project.id == projects.currentProject.id ? projects.currentProject.title : project.title }}
       %md-divider.ng-scope{ ng_if: '!$last' }
 
-  %div{ layout: 'row', 'layout-align': 'center' }
+  %div{ layout: 'row', layout_align: 'center' }
     %md-button.md-raised.md-primary{ 'ng-click': 'projects.create()' } New Project
