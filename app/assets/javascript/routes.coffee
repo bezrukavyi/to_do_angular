@@ -51,4 +51,7 @@ redirectAuthed = ($auth, $state, TodoToast) ->
 angular.module('toDoApp').run ($rootScope, $state, $auth) ->
   $rootScope.$on 'auth:logout-success', (ev) ->
     $state.go 'sign_in'
+
+  $rootScope.$on 'auth:login-success', (ev) ->
+    $state.go 'project'
   return

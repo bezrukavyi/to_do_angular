@@ -8,6 +8,7 @@ end
 require 'spec_helper'
 require 'rspec/rails'
 require 'capybara/rspec'
+require 'capybara/email/rspec'
 require 'capybara-screenshot/rspec'
 
 %w(support).each do |folder|
@@ -20,6 +21,8 @@ ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
+  config.include Devise::Test::ControllerHelpers, type: :controller
+  config.include Warden::Test::Helpers
 
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 

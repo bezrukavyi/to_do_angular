@@ -1,4 +1,4 @@
-UsersController = ($auth, TodoToast, Omniauth) ->
+UsersController = ($auth, $state, TodoToast, Omniauth) ->
   ctrl = this
 
   ctrl.new = {
@@ -13,13 +13,12 @@ UsersController = ($auth, TodoToast, Omniauth) ->
   ctrl.create = (form) ->
     return if form.$invalid
     $auth.submitRegistration(ctrl.new)
-    .then((resp) ->
-      console.log('success')
-      console.log(resp)
+    .then((response) ->
+      TodoToast.success('Confirmation email sent to you')
       return
     )
-    .catch((resp) ->
-      console.log(resp)
+    .catch((response) ->
+      TodoToast.error(response.data.errors.full_messages[0])
       return
     )
 
@@ -28,4 +27,4 @@ UsersController = ($auth, TodoToast, Omniauth) ->
 
   return
 
-angular.module('toDoApp').controller 'UsersController', ['$auth', 'TodoToast', 'Omniauth', UsersController]
+angular.module('toDoApp').controller 'UsersController', ['$auth', '$state', 'TodoToast', 'Omniauth', UsersController]

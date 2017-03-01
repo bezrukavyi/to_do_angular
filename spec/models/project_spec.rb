@@ -3,6 +3,7 @@ describe Project, type: :model do
 
   context 'association' do
     it { should have_many :tasks }
+    it { should belong_to :user }
   end
 
   context 'validation' do

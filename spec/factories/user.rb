@@ -10,5 +10,10 @@ FactoryGirl.define do
     trait :with_tasks do
       tasks { create_list(:task, 2) }
     end
+
+    trait :default_password do
+      password { 'Password555' }
+      password_confirmation { password }
+    end
   end
 end

@@ -1,5 +1,5 @@
 %md-content#content{ flex: '', layout: 'vertical' }
-  %form{ name: 'userForm', 'ng-submit': 'user.create(userForm)', role: 'form', layout: 'row', 'layout-align': 'center center', 'layout-fill': '' }
+  %form#new_user{ name: 'userForm', 'ng-submit': 'user.create(userForm)', role: 'form', layout: 'row', 'layout-align': 'center center', 'layout-fill': '' }
     %md-whiteframe.md-whiteframe-z1{ flex: '30', layout: 'column', 'layout-padding': '' }
       %md-content{ layout: 'column', 'layout-align': 'stretch center' }
         %md-input-container.md-block
@@ -10,7 +10,12 @@
           %input{ 'ng-model': 'user.new.password', type: 'password', required: '' }
         %md-input-container.md-block
           %label Password confirmation
-          %input{ 'ng-model': 'user.new.password_confirmation', type: 'password_confirmation', required: '' }
+          %input{ 'ng-model': 'user.new.password_confirmation', type: 'password', required: '' }
+
+      %md-input-container.omniauth-container
+        %md-button.md-raised.md-primary#google{ 'ng-click': "user.omniauth('google')" } Google+
+        %md-button.md-raised.md-primary#facebook{ 'ng-click': "user.omniauth('facebook')" } Facebook
+
       %md-input-container{ layout: 'column', 'layout-align': 'center center' }
         %md-button.md-raised{ 'ui-sref': 'sign_in' } Login
-        %md-button.md-raised.md-primary{ type: 'submit' } Register
+        %md-button.md-raised.md-primary{ type: 'submit' } Sign up

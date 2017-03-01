@@ -63,10 +63,12 @@ end
 
 group :test do
   gem 'capybara'
+  gem 'capybara-email'
   gem 'capybara-screenshot'
   gem 'database_cleaner'
   gem 'poltergeist'
   gem 'shoulda-matchers'
+  gem 'rails-controller-testing'
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
