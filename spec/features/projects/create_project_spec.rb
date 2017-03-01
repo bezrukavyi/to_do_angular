@@ -1,7 +1,7 @@
 include Support::UserAuth
 include Support::CheckAttributes
 
-feature 'Manage project', type: :feature, js: true do
+feature 'Create project', type: :feature, js: true do
   let(:user) { create :user, :default_password }
 
   background do

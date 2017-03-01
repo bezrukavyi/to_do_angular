@@ -27,7 +27,7 @@ module Support
       if exist
         expect(page).to have_css('span.hidden', options)
       else
-        expect(page).not_to have_css('span.hidden', options)
+        expect(page).to have_no_css('span.hidden', options)
       end
     end
 

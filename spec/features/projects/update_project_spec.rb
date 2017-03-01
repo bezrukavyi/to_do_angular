@@ -2,7 +2,7 @@ include Support::UserAuth
 include Support::CheckAttributes
 include Support::Projects
 
-feature 'Manage project', type: :feature, js: true do
+feature 'Update project', type: :feature, js: true do
   let(:user) { create :user, :default_password }
 
   background do
@@ -19,7 +19,7 @@ feature 'Manage project', type: :feature, js: true do
     update_project_title(new_title)
     expect(page).to have_content('Project success updated')
     expect(page).to have_content(new_title)
-    expect(page).not_to have_content(old_title)
+    expect(page).to have_no_content(old_title)
   end
 
   scenario 'user update title with invalid data' do

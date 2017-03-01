@@ -1,5 +1,6 @@
 include Support::UserAuth
 include Support::CheckAttributes
+include Support::Projects
 
 feature 'Show project', type: :feature, js: true do
   let(:user) { create :user, :default_password }
@@ -19,10 +20,10 @@ feature 'Show project', type: :feature, js: true do
 
   scenario 'user can choose project' do
     project = @projects.first
-    expect(page).not_to have_css('.hidden', text: project.title)
+    expect(page).to have_no_css('.hidden', text: project.title)
     check_hidden_title(project, :title, false)
     check_hidden_title(project.tasks, :title, false)
-    first('.project-link', text: project.title).click
+    choose_project(project)
     check_hidden_title(project)
     check_hidden_title(project.tasks)
   end

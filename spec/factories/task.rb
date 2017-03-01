@@ -9,6 +9,10 @@ FactoryGirl.define do
       checked true
     end
 
+    trait :invalid do
+      title nil
+    end
+
     trait :with_project do
       project { create :project }
     end

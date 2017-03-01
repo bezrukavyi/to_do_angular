@@ -10,12 +10,13 @@ describe Api::ProjectsController, type: :controller do
   end
 
   describe 'GET #index' do
-    it 'get all projects' do
+    before do
       get :index
+    end
+    it 'get all projects' do
       expect(assigns(:projects)).to eq([@project])
     end
     it 'returns a successful 200 response' do
-      get :index
       expect(response).to be_success
     end
   end

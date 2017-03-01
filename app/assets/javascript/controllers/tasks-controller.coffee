@@ -35,7 +35,7 @@ TasksController = (Task, TodoToast) ->
     }
     Task.update(options).$promise.then (
       (response) ->
-        TodoToast.success("Task '#{response.title}' success updated")
+        TodoToast.success("Task success updated")
       ), (response) ->
         TodoToast.error(response.data.error)
 
