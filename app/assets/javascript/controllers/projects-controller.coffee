@@ -23,7 +23,7 @@ ProjectsController = (Project, $stateParams, $state, $filter, TodoToast) ->
       (response) ->
         ctrl.delete_from_list(ctrl.currentProject)
         ctrl.currentProject = null
-        TodoToast.success("Project success deleted")
+        TodoToast.success("Project '#{response.title}' success deleted")
       ), (response) ->
         TodoToast.error(response.data.error)
 

@@ -8,20 +8,21 @@
 
 %md-content{ flex: '', 'ng-if': 'projects.currentProject' }
 
-  %form.project-form{ layout: 'column', 'layout-align': 'center center', name: 'editProjectForm' }
+  %form#project-form{ layout: 'column', 'layout-align': 'center center', name: 'editProjectForm' }
     %md-input-container.md-block.project-title{ 'ng-class': "{ 'read-field': !editProjectForm.edited }" }
-      %textarea.title{ 'aria-label': 'Title', 'md-maxlength': '50', 'md-no-asterisk': '', required: '', name: 'title', 'ng-model': 'projects.currentProject.title' }
+      %textarea#title-field.title{ 'aria-label': 'Title', 'md-maxlength': '50', 'md-no-asterisk': '', required: '', name: 'title', 'ng-model': 'projects.currentProject.title' }
+      %span.hidden {{ projects.currentProject.title }}
       %div.validators{'ng-messages': 'editProjectForm.title.$error'}
         %div{'ng-message': 'required'} This is required.
         %div{'ng-message': 'md-maxlength'} The title must be less than 50 characters long.
 
     %md-actions.project-actions{ layout: 'row', 'layout-align': 'center' }
-      %md-button.md-icon-button.md-ink-ripple.md-24
+      %md-button#edit-project.md-icon-button.md-ink-ripple.md-24
         %md-icon{'ng-click': 'projects.edit(editProjectForm, projects.currentProject)' } edit
-      %md-button.md-icon-button.md-button.md-ink-ripple.md-24
+      %md-button#delete-project.md-icon-button.md-button.md-ink-ripple.md-24
         %md-icon{'ng-click': 'projects.delete(projects.currentProject)' } delete
       %md-button.md-icon-button.md-button.md-ink-ripple.md-24
-        %md-icon{'ng-click': 'projects.delete()' } date_range
+        %md-icon{ } date_range
 
 
   .tasks-content{ layout: 'column', 'layout-align': 'center center', 'ng-controller': 'TasksController as tasks' }

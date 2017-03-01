@@ -116,7 +116,7 @@
     width: 100%;
   }
 }
-.project-form {
+#project-form {
   margin: 35px 0 25px 0;
   .md-block {
     margin: 0;
@@ -131,4 +131,7 @@
 .project-title {
   width: 80%;
   max-width: 650px;
+}
+.hidden {
+  display: none;
 }

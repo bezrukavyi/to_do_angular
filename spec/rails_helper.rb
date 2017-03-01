@@ -30,6 +30,8 @@ RSpec.configure do |config|
     Capybara::Selenium::Driver.new(app, browser: :chrome)
   end
 
+  Capybara::Webkit.configure(&:block_unknown_urls)
+
   Capybara.javascript_driver = :selenium_chrome
 
   config.use_transactional_fixtures = false

@@ -1,6 +1,7 @@
 module Support
   module UserAuth
     def sign_up(form_id, options)
+      visit '#!/sign_up'
       within "##{form_id}" do
         fill_in 'Email', with: options[:email]
         fill_passwords(options[:password])
@@ -8,7 +9,9 @@ module Support
       end
     end
 
-    def sign_in(form_id, options)
+    def sign_in(form_id = 'new_session', options)
+      options[:password] ||= attributes_for(:user, :default_password)[:password]
+      visit '#!/sign_in'
       within "##{form_id}" do
         fill_in 'Email', with: options[:email]
         fill_in 'Password', with: options[:password]

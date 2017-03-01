@@ -69,6 +69,9 @@ GEM
     capybara-screenshot (1.0.14)
       capybara (>= 1.0, < 3)
       launchy
+    capybara-webkit (1.12.0)
+      capybara (>= 2.3.0, < 2.13.0)
+      json
     case_transform (0.2)
       activesupport
     childprocess (0.6.2)
@@ -128,6 +131,7 @@ GEM
     jbuilder (2.6.3)
       activesupport (>= 3.0.0, < 5.2)
       multi_json (~> 1.2)
+    json (2.0.3)
     jsonapi (0.1.1.beta6)
       jsonapi-parser (= 0.1.1.beta3)
       jsonapi-renderer (= 0.1.1.beta1)
@@ -313,6 +317,7 @@ DEPENDENCIES
   capybara
   capybara-email
   capybara-screenshot
+  capybara-webkit
   coffee-rails (~> 4.2)
   database_cleaner
   devise_token_auth

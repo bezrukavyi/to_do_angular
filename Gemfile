@@ -52,6 +52,7 @@ group :development, :test do
   gem 'shoulda'
   gem 'ffaker'
   gem 'selenium-webdriver'
+  gem 'capybara-webkit'
 end
 
 group :development do

@@ -3,6 +3,7 @@
     %md-checkbox.todo-checkbox{ 'aria-label': 'task.title', name: 'checked', 'ng-model': 'task.checked', 'ng-change': 'ctrl.update(editTaskForm, task)' }
     %md-input-container.md-block{ 'ng-class': "{ 'read-field': !editTaskForm.edited }" }
       %textarea.title{ 'aria-label': 'Title', 'md-maxlength': '100', 'md-no-asterisk': '', required: '', name: 'title', 'ng-model': 'task.title' }
+      %span.hidden {{ task.title }}
       %div.validators{'ng-messages': 'editTaskForm.title.$error'}
         %div{'ng-message': 'required'} This is required.
         %div{'ng-message': 'md-maxlength'} The title must be less than 100 characters long.
