@@ -16,5 +16,19 @@ module Support
       end
       find('#edit-project').click
     end
+
+    def completed_at_project(project, time)
+      find('#deadline-project').click
+      find("[id*='#{time.year}-#{time.month - 1}-#{time.day}']").click
+    end
+
+    def check_completed_at(date, exist = true)
+      value = date.strftime('%d/%m/%y')
+      if exist
+        expect(page).to have_content(value)
+      else
+        expect(page).to have_no_content(value)
+      end
+    end
   end
 end

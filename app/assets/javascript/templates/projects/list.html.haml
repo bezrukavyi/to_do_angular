@@ -1,8 +1,9 @@
 %md-sidenav.view-slide-in{ 'md-is-locked-open': 'true', 'md-whiteframe': '4' }
   %md-toolbar
-    .md-toolbar-tools
+    .md-toolbar-tools{ layout: 'row', layout_align: 'space-between center' }
       %h1.md-flex Angular ToDo
-    %a{ 'ng-click': 'signOut()' } Sign out
+      %md-button#sign-out.md-icon-button.md-button.md-ink-ripple.md-24
+        %md-icon{ 'ng-click': 'signOut()' } exit_to_app
 
   %md-subheader
     %span.ng-scope Your projects

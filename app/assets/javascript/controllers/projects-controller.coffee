@@ -3,6 +3,13 @@ ProjectsController = (Project, $stateParams, $state, $filter, TodoToast) ->
   ctrl.currentProject = null
   ctrl.all = null
 
+  ctrl.date = new Date()
+  ctrl.minDate = new Date(
+    ctrl.date.getFullYear(),
+    ctrl.date.getMonth(),
+    ctrl.date.getDate()
+  )
+
   ctrl.index = () ->
     Project.index().$promise.then (
       (response) ->
@@ -13,18 +20,11 @@ ProjectsController = (Project, $stateParams, $state, $filter, TodoToast) ->
   ctrl.show = (options) ->
     Project.get(options).$promise.then (
       (response) ->
+        if response.completed_at
+          response.completed_at = new Date(response.completed_at)
         ctrl.currentProject = response
       ), (response) ->
         ctrl.currentProject = null
-        TodoToast.error(response.data.error)
-
-  ctrl.delete = (project) ->
-    Project.delete(id: project.id).$promise.then (
-      (response) ->
-        ctrl.delete_from_list(ctrl.currentProject)
-        ctrl.currentProject = null
-        TodoToast.success("Project '#{response.title}' success deleted")
-      ), (response) ->
         TodoToast.error(response.data.error)
 
   ctrl.create = () ->
@@ -47,10 +47,20 @@ ProjectsController = (Project, $stateParams, $state, $filter, TodoToast) ->
     options = {
       id: project.id
       title: project.title
+      completed_at: project.completed_at
     }
     Project.update(options).$promise.then (
       (response) ->
         TodoToast.success('Project success updated')
+      ), (response) ->
+        TodoToast.error(response.data.error)
+
+  ctrl.delete = (project) ->
+    Project.delete(id: project.id).$promise.then (
+      (response) ->
+        ctrl.delete_from_list(ctrl.currentProject)
+        ctrl.currentProject = null
+        TodoToast.success("Project '#{response.title}' success deleted")
       ), (response) ->
         TodoToast.error(response.data.error)
 
@@ -62,14 +72,6 @@ ProjectsController = (Project, $stateParams, $state, $filter, TodoToast) ->
   $state.transitionTo('project.list')
 
   return
-
-
-
-
-
-
-
-
 
 angular.module('toDoApp').controller 'ProjectsController', [
   'Project',

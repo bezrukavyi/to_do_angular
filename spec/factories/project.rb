@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :project do
     title FFaker::Job.title
-    completed_at FFaker::Time.date
+    completed_at Time.now
     user
 
     trait :with_tasks do

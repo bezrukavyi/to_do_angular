@@ -2,13 +2,16 @@ TasksController = (Task, TodoToast) ->
   ctrl = this
   ctrl.editedTask = null
 
+  ctrl.new = { project_id: null, title: null, checked: false }
+
   ctrl.create = (form, project) ->
     return if form.$invalid
-    options = { project_id: project.id, title: form.title.$viewValue }
-    Task.create(options).$promise.then (
+    ctrl.new.project_id = project.id
+    Task.create(ctrl.new).$promise.then (
       (response) ->
         project.tasks.push(response)
         TodoToast.success("Task '#{response.title}' success created")
+        ctrl.resetNew(form)
       ), (response) ->
         TodoToast.error(response.data.error)
 
@@ -22,7 +25,7 @@ TasksController = (Task, TodoToast) ->
         TodoToast.error(response.data.error)
 
   ctrl.edit = (form, task) ->
-    return true if form.$invalid
+    return if form.$invalid
     ctrl.update(form, task) if form.edited == true
     form.edited = !form.edited
 
@@ -38,6 +41,11 @@ TasksController = (Task, TodoToast) ->
         TodoToast.success("Task success updated")
       ), (response) ->
         TodoToast.error(response.data.error)
+
+  ctrl.resetNew = (form) ->
+    form.$setPristine()
+    form.$setUntouched()
+    ctrl.new = {}
 
   return
 

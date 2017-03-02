@@ -1,6 +1,9 @@
 .md-errors-spacer {
   transition: 150ms;
 }
+.md-datepicker-input-mask {
+  display: none;
+}
 
 .read-field {
   input, textarea {
@@ -134,4 +137,24 @@
 }
 .hidden {
   display: none;
+}
+
+.project-actions {
+  position: relative;
+  margin-bottom: 10px;
+  .md-datepicker-input-container {
+    position: absolute;
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+.project-datepicker {
+  .md-icon-button {
+    @extend .md-24;
+  }
+}
+.date-title {
+  min-height: 20px;
+  font-size: 14px;
+  font-weight: 500;
 }

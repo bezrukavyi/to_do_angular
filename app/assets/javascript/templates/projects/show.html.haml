@@ -17,13 +17,13 @@
         %div{ ng_message: 'md-maxlength' } The title must be less than 50 characters long.
 
     %md-actions.project-actions{ layout: 'row', layout_align: 'center' }
-      %md-button#edit-project.md-icon-button.md-ink-ripple.md-24
+      %md-button#edit-project.md-ink-ripple.md-icon-button.md-24
         %md-icon{ 'ng-click': 'projects.edit(editProjectForm, projects.currentProject)' } edit
-      %md-button#delete-project.md-icon-button.md-button.md-ink-ripple.md-24
+      %md-button#delete-project.md-button.md-ink-ripple.md-icon-button.md-24
         %md-icon{ 'ng-click': 'projects.delete(projects.currentProject)' } delete
-      %md-button.md-icon-button.md-button.md-ink-ripple.md-24
-        %md-icon{ } date_range
+      %md-datepicker#deadline-project.project-datepicker{ 'md-min-date': 'projects.minDate', name: 'completed_at', ng_model: 'projects.currentProject.completed_at', 'ng-change': 'projects.update(editProjectForm, projects.currentProject)' }
 
+    .date-title {{ projects.currentProject.completed_at | date: 'dd/MM/yy' }}
 
   .tasks-content{ layout: 'column', layout_align: 'center center', ng_controller: 'TasksController as tasks' }
     %tasks_create{ ctrl: 'tasks', project: 'projects.currentProject' }

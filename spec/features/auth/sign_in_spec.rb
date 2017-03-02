@@ -5,13 +5,13 @@ feature 'Sign in', type: :feature, js: true do
     user = create :user
     sign_in email: user.email, password: user.password
     expect(page).to have_content 'Success singed in'
-    expect(page).to have_content 'Sign out'
+    expect(page).to have_css('#sign-out')
   end
 
   scenario 'User has already signed in' do
     user = create :user, :default_password
     sign_in email: user.email
-    sleep 5
+    sleep 3
     visit '#!/sign_in'
     expect(page).to have_content 'You have already sined in'
   end
