@@ -7,22 +7,15 @@ TasksController = (Task, TodoToast) ->
   ctrl.create = (form, project) ->
     return if form.$invalid
     ctrl.new.project_id = project.id
-    Task.create(ctrl.new).$promise.then (
-      (response) ->
+    Task.create(ctrl.new).$promise
+      .then((response) ->
         project.tasks.push(response)
         TodoToast.success("Task '#{response.title}' success created")
         ctrl.resetNew(form)
-      ), (response) ->
+      )
+      .catch((response) ->
         TodoToast.error(response.data.error)
-
-  ctrl.delete = (task, project) ->
-    Task.delete(id: task.id).$promise.then (
-      (response) ->
-        index = project.tasks.indexOf(task)
-        project.tasks.splice(index, 1) if (index != -1)
-        TodoToast.success("Task '#{response.title}' success deleted")
-      ), (response) ->
-        TodoToast.error(response.data.error)
+      )
 
   ctrl.edit = (form, task) ->
     return if form.$invalid
@@ -36,11 +29,21 @@ TasksController = (Task, TodoToast) ->
       title: form.title.$viewValue,
       checked: form.checked.$viewValue
     }
-    Task.update(options).$promise.then (
-      (response) ->
-        TodoToast.success("Task success updated")
-      ), (response) ->
+    Task.update(options).$promise
+      .catch((response) ->
         TodoToast.error(response.data.error)
+      )
+
+  ctrl.delete = (task, project) ->
+    Task.delete(id: task.id).$promise
+      .then((response) ->
+        index = project.tasks.indexOf(task)
+        project.tasks.splice(index, 1) if (index != -1)
+        TodoToast.success("Task '#{response.title}' success deleted")
+      )
+      .catch((response) ->
+        TodoToast.error(response.data.error)
+      )
 
   ctrl.resetNew = (form) ->
     form.$setPristine()

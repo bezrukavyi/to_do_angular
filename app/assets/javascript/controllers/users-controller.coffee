@@ -14,7 +14,7 @@ UsersController = ($auth, $state, TodoToast, Omniauth) ->
     return if form.$invalid
     $auth.submitRegistration(ctrl.new)
     .then((response) ->
-      TodoToast.success('Confirmation email sent to you')
+      TodoToast.success('Success registered. Confirmation email sent to you')
       return
     )
     .catch((response) ->

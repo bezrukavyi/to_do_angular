@@ -17,7 +17,6 @@ feature 'Update project', type: :feature, js: true do
     old_title = @project.title
     new_title = 'Rspec title'
     update_project_title(new_title)
-    expect(page).to have_content('Project success updated')
     expect(page).to have_content(new_title)
     expect(page).to have_no_content(old_title)
   end
@@ -27,7 +26,6 @@ feature 'Update project', type: :feature, js: true do
     new_completed = (Time.now + 5.day)
     check_completed_at(old_completed)
     completed_at_project(@project, new_completed)
-    expect(page).to have_content('Project success updated')
     check_completed_at(old_completed, false)
     check_completed_at(new_completed)
   end

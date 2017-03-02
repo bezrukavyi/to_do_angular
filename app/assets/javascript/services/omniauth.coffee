@@ -1,14 +1,16 @@
-Omniauth = ($auth) ->
+Omniauth = ($auth, $state, TodoToast) ->
   service = this
 
   service.call = (provider) ->
     return unless provider
     $auth.authenticate(provider).then (
       (response) ->
-        console.log('success omniauth')
+        $state.go 'project'
+        console.log(response)
+        TodoToast.success('Success singed')
       ), (response) ->
-        console.log('failure omniauth')
+        TodoToast.error('Error authed')
 
   return
 
-angular.module('toDoApp').service 'Omniauth', ['$auth', Omniauth]
+angular.module('toDoApp').service 'Omniauth', ['$auth', '$state', 'TodoToast', Omniauth]

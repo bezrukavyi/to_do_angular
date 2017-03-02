@@ -21,6 +21,7 @@
 
 @app.config ($authProvider) ->
   $authProvider.configure {
+    omniauthWindowType: 'newWindow'
     authProviderPaths: {
       github:   '/auth/github',
       facebook: '/auth/facebook',

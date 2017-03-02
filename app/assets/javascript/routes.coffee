@@ -37,21 +37,20 @@ redirectAuth = ($auth, $state, TodoToast) ->
     $state.go 'sign_in'
     return
 
-redirectAuthed = ($auth, $state, TodoToast) ->
+redirectAuthed = ($auth, $state, $location, TodoToast) ->
   $auth.validateUser()
     .then(() ->
+      $location.path('/')
       TodoToast.error('You have already sined in')
-      $state.go 'project'
       return
     )
     .catch(() ->
       return
     )
 
-angular.module('toDoApp').run ($rootScope, $state, $auth) ->
+angular.module('toDoApp').run ($rootScope, $state, $auth, TodoToast) ->
   $rootScope.$on 'auth:logout-success', (ev) ->
     $state.go 'sign_in'
+    TodoToast.success('Success sign out')
 
-  $rootScope.$on 'auth:login-success', (ev) ->
-    $state.go 'project'
   return

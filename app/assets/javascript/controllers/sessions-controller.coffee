@@ -1,22 +1,24 @@
 SessionsController = ($auth, $rootScope, $state, TodoToast, Omniauth) ->
   ctrl = this
-  ctrl.new = { }
-
-  ctrl.resetNew = () ->
-    ctrl.new = { }
+  ctrl.new = {}
 
   ctrl.signIn = (form) ->
     return if form.$invalid
     $auth.submitLogin(ctrl.new).then (
       (response) ->
+        $state.go 'project'
         TodoToast.success('Success singed in')
-        $state.go 'index'
-        ctrl.resetNew()
+        ctrl.resetNew(form)
       ), (response) ->
         TodoToast.error(response.errors[0])
 
   ctrl.omniauth = (provider) ->
     Omniauth.call(provider)
+
+  ctrl.resetNew = (form) ->
+    form.$setPristine()
+    form.$setUntouched()
+    ctrl.new = {}
 
   return
 

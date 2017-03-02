@@ -19,7 +19,6 @@ feature 'Update task', type: :feature, js: true do
     old_title = @task.title
     new_title = 'New title'
     update_task_title(@task, new_title)
-    expect(page).to have_content('Task success updated')
     exist_hidden_value(old_title, false)
     exist_hidden_value(new_title, true)
   end
@@ -31,10 +30,8 @@ feature 'Update task', type: :feature, js: true do
 
   scenario 'user can check task' do
     task_checkbox(@task).click
-    expect(page).to have_content('Task success updated')
     expect(checkbox_state(@task)).to eq('true')
     task_checkbox(@task).click
-    expect(page).to have_content('Task success updated')
     expect(checkbox_state(@task)).to eq('false')
   end
 end
