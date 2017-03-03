@@ -6,7 +6,9 @@
   'templates',
   'ipCookie',
   'ng-token-auth',
-  'ngCookies'
+  'ngCookies',
+  'pascalprecht.translate',
+  'tmh.dynamicLocale'
 ])
 
 @app.config ($mdThemingProvider, $mdIconProvider) ->
@@ -15,9 +17,7 @@
     .primaryPalette('blue')
     .accentPalette('blue')
   $mdIconProvider
-    .fontSet('md-icons', 'material-icons');
-
-
+    .fontSet('md-icons', 'material-icons')
 
 @app.config ($authProvider) ->
   $authProvider.configure {
@@ -28,3 +28,18 @@
       google:   '/auth/google_oauth2'
     }
   }
+
+
+@app.config ($translateProvider) ->
+  $translateProvider.useStaticFilesLoader {
+    prefix: 'api/translations/',
+    suffix: '.json'
+  }
+  $translateProvider.useSanitizeValueStrategy('escapeParameters')
+  $translateProvider.preferredLanguage('en')
+  $translateProvider.useLocalStorage()
+  $translateProvider.forceAsyncReload(true)
+
+@app.run ($rootScope, $translate) ->
+  $rootScope.changeLocale = (langKey) ->
+    $translate.use(langKey)

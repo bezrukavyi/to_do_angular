@@ -1,12 +1,12 @@
 %md-sidenav.view-slide-in{ 'md-is-locked-open': 'true', 'md-whiteframe': '4' }
   %md-toolbar
     .md-toolbar-tools{ layout: 'row', layout_align: 'space-between center' }
-      %h1.md-flex Angular ToDo
+      %h1.md-flex {{ 'app.title' | translate }}
       %md-button#sign-out.md-icon-button.md-button.md-ink-ripple.md-24
         %md-icon{ 'ng-click': 'signOut()' } exit_to_app
 
   %md-subheader
-    %span.ng-scope Your projects
+    %span.ng-scope {{ 'project.list_title' | translate }}
 
   %md-list{ role: 'list' }
     %md-list-item.noright.project-link{ ng_repeat: 'project in projects.all', 'ng-click': 'projects.show({id: project.id})' }
@@ -14,4 +14,8 @@
       %md-divider.ng-scope{ ng_if: '!$last' }
 
   %div{ layout: 'row', layout_align: 'center' }
-    %md-button.md-raised.md-primary{ 'ng-click': 'projects.create()' } New Project
+    %md-button.md-raised{ 'ng-click': "changeLocale('en')" } EN
+    %md-button.md-raised{ 'ng-click': "changeLocale('ru')" } RU
+
+  %div{ layout: 'row', layout_align: 'center' }
+    %md-button.md-raised.md-primary{ 'ng-click': 'projects.create()' } {{ 'project.new' | translate }}

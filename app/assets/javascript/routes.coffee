@@ -2,15 +2,15 @@ angular.module('toDoApp').config ['$stateProvider', '$urlRouterProvider', ($stat
   $stateProvider
   .state 'sign_in',
     url: '/sign_in'
-    templateUrl: 'sessions/new.html',
-    controller: 'SessionsController',
-    controllerAs: 'session',
+    templateUrl: 'sessions/new.html'
+    controller: 'SessionsController'
+    controllerAs: 'session'
     resolve: auth: redirectAuthed
 
   .state 'sign_up',
     url: '/sign_up'
-    templateUrl: 'users/new.html',
-    controller: 'UsersController',
+    templateUrl: 'users/new.html'
+    controller: 'UsersController'
     controllerAs: 'user',
     resolve: auth: redirectAuthed
 
@@ -18,18 +18,16 @@ angular.module('toDoApp').config ['$stateProvider', '$urlRouterProvider', ($stat
     url: '/'
     controller: 'ProjectsController'
     controllerAs: 'projects'
-    templateUrl: 'projects/show.html',
+    templateUrl: 'projects/show.html'
     resolve: auth: redirectAuth
 
   .state 'project.list',
     templateUrl: 'projects/list.html'
 
-
   $urlRouterProvider.otherwise '/'
 
   return
 ]
-
 
 redirectAuth = ($auth, $state, TodoToast) ->
   $auth.validateUser().catch (res) ->
@@ -52,5 +50,4 @@ angular.module('toDoApp').run ($rootScope, $state, $auth, TodoToast) ->
   $rootScope.$on 'auth:logout-success', (ev) ->
     $state.go 'sign_in'
     TodoToast.success('Success sign out')
-
   return

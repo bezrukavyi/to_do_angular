@@ -9,5 +9,13 @@
 //= require angular-cookie
 //= require angular-cookies
 //= require ng-token-auth
+
+//= require angular-translate
+//= require angular-translate-loader-static-files
+//= require angular-translate-storage-cookie
+//= require angular-translate-storage-local
+//= require angular-translate-handler-log
+//= require angular-dynamic-locale
+
 //= require_tree .
 //= require_tree ./templates

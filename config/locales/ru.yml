@@ -1,0 +1,7 @@
+ru:
+  app:
+    title: Angular ToDo
+  project:
+    empty_title: Выберите проект или создайте новый
+    list_title: Ваши проекты
+    new: Новый проект
