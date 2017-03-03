@@ -9,6 +9,10 @@ module Support
       find('#delete-project').click
     end
 
+    def create_project
+      first(:button, 'New project').click
+    end
+
     def update_project_title(title)
       find('#edit-project').click
       within '#project-form' do

@@ -1,7 +1,7 @@
 %ui-view.view-slide-in{ layout: 'row' }
 
 %md-content{ flex: '', layout: 'column', layout_align: 'center center', ng_if: '!projects.currentProject' }
-  %h1 {{ 'project.empty_title' | translate }}
+  %h2.center {{ 'project.empty_title' | translate }}
   %div{ layout: 'row', layout_align: 'center' }
     %md-button.md-raised.md-primary{ 'ng-click': 'projects.create()' } {{ 'project.new' | translate }}
 
@@ -11,7 +11,7 @@
   %form#project-form{ layout: 'column', layout_align: 'center center', name: 'editProjectForm' }
     %md-input-container.md-block.project-title{ 'ng-class': "{ 'read-field': !editProjectForm.edited }" }
       %textarea#title-field.title{ 'aria-label': 'Title', 'md-maxlength': '50', 'md-no-asterisk': '', required: '', name: 'title', ng_model: 'projects.currentProject.title' }
-      %span.hidden {{ 'projects.currentProject.title' }}
+      %span.hidden {{ projects.currentProject.title }}
 
 
 

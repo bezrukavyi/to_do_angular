@@ -13,36 +13,30 @@ ProjectsController = (Project, $stateParams, $state, $filter, TodoToast) ->
   )
 
   ctrl.index = () ->
-    Project.index().$promise
-      .then((response) ->
+    Project.index().$promise.then (
+      (response) ->
         ctrl.all = response
-      )
-      .catch((response) ->
+      ), (response) ->
         TodoToast.error(response.data.error)
-      )
 
   ctrl.show = (options) ->
-    Project.get(options).$promise
-      .then((response) ->
+    Project.get(options).$promise.then (
+      (response) ->
         if response.completed_at
           response.completed_at = new Date(response.completed_at)
         ctrl.currentProject = response
-      )
-      .catch((response) ->
+      ), (response) ->
         ctrl.currentProject = null
         TodoToast.error(response.data.error)
-      )
 
   ctrl.create = () ->
-    Project.create(title: 'New project').$promise
-      .then((response) ->
+    Project.create(title: 'New project').$promise.then (
+      (response) ->
         ctrl.all.push(response)
         ctrl.currentProject = response
         TodoToast.success('Project success created')
-      )
-      .catch((response) ->
+      ), (response) ->
         TodoToast.error(response.data.error)
-      )
 
   ctrl.edit = (form) ->
     project = ctrl.currentProject
@@ -52,21 +46,22 @@ ProjectsController = (Project, $stateParams, $state, $filter, TodoToast) ->
 
   ctrl.update = (form, project) ->
     return unless form.$valid
-    Project.update(project).$promise
-      .catch((response) ->
-        TodoToast.error(response.data.error)
-      )
+    Project.update(project).$promise.then(null, (response) ->
+      TodoToast.error(response.data.error)
+    )
 
   ctrl.delete = (project) ->
-    Project.delete(id: project.id).$promise
-      .then((response) ->
+    Project.delete(id: project.id).$promise.then (
+      (response) ->
         ctrl.delete_from_list(ctrl.currentProject)
         ctrl.currentProject = null
         TodoToast.success("Project '#{response.title}' success deleted")
-      )
-      .catch((response) ->
+      ), (response) ->
         TodoToast.error(response.data.error)
-      )
+
+  ctrl.itsCurrentProject = (project) ->
+    return false unless ctrl.currentProject
+    ctrl.currentProject.id == project.id
 
   ctrl.delete_from_list = (project) ->
     index = ctrl.all.indexOf($filter('filter')(ctrl.all, id: project.id)[0])

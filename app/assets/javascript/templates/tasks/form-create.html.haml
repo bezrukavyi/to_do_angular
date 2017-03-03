@@ -4,4 +4,6 @@
     %div.validators{ ng_messages: 'taskForm.title.$error' }
       %div{ ng_message: 'required' } This is required.
       %div{ ng_message: 'md-maxlength' } The title must be less than 100 characters long.
-  %md-button.md-raised.md-primary#create-task{ type: 'submit' } New Task
+  %md-button.md-raised.md-primary#create-task{ 'hide-xs': '', type: 'submit' } New Task
+  %md-button.md-icon-button.md-button.md-ink-ripple.md-primary.md-24{ 'hide-gt-xs': '', type: 'submit' }
+    %md-icon add
