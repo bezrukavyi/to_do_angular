@@ -4,7 +4,6 @@
   'ngResource',
   'ngMessages',
   'templates',
-  'ipCookie',
   'ng-token-auth',
   'ngCookies',
   'pascalprecht.translate',
