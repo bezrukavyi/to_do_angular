@@ -1,9 +1,9 @@
 /*  ng-view Animation  */
 .view-slide-in.ng-enter {
-  transition: all 1s ease;
-  -webkit-transition:all 1s ease;
-  -moz-transition: all 1s ease;
-  -o-transition: all 1s ease;
+  transition: all 0.75s ease;
+  -webkit-transition:all 0.75s ease;
+  -moz-transition: all 0.75s ease;
+  -o-transition: all 0.75s ease;
 
   opacity:0.5;
   position:relative;
@@ -27,10 +27,10 @@
 .repeat-animation.ng-enter,
 .repeat-animation.ng-leave,
 .repeat-animation.ng-move {
-  -webkit-transition: all linear 1s;
-  -moz-transition: all linear 1s;
-  -o-transition: all linear 1s;
-  transition: all linear 1s;
+  -webkit-transition: all linear 0.75s;
+  -moz-transition: all linear 0.75s;
+  -o-transition: all linear 0.75s;
+  transition: all linear 0.75s;
 }
 .repeat-animation.ng-enter {
   opacity: 0;
@@ -53,10 +53,10 @@
 
 /*  ng-hide Animation  */
 .hide-fade.ng-hide-add, .hide-fade.ng-hide-remove {
-  -webkit-transition:all linear 1s;
-  -moz-transition:all linear 1s;
-  -o-transition:all linear 1s;
-  transition:all linear 1s;
+  -webkit-transition:all linear 0.75s;
+  -moz-transition:all linear 0.75s;
+  -o-transition:all linear 0.75s;
+  transition:all linear 0.75s;
   display:block!important;
 }
 

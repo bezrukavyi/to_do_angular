@@ -5,10 +5,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
-
-  rescue_from CanCan::AccessDenied do |_exception|
-    render json: { status: :forbidden }
-  end
+  rescue_from CanCan::AccessDenied, with: :record_not_found
 
   def angular
     render 'layouts/application'

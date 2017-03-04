@@ -1,6 +1,6 @@
 angular.module('toDoApp').config ['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterProvider) ->
   $stateProvider
-  .state 'root',
+  .state 'main',
     url: ''
     controller: 'MainController'
     controllerAs: 'main'
@@ -8,7 +8,7 @@ angular.module('toDoApp').config ['$stateProvider', '$urlRouterProvider', ($stat
 
   .state 'sign_in',
     url: '/sign_in'
-    parent: 'root'
+    parent: 'main'
     templateUrl: 'sessions/new.html'
     controller: 'SessionsController'
     controllerAs: 'session'
@@ -16,23 +16,23 @@ angular.module('toDoApp').config ['$stateProvider', '$urlRouterProvider', ($stat
 
   .state 'sign_up',
     url: '/sign_up'
-    parent: 'root'
+    parent: 'main'
     templateUrl: 'users/new.html'
     controller: 'UsersController'
     controllerAs: 'user',
     resolve: auth: redirectAuthed
 
-  .state 'project',
+  .state 'projects',
     url: '/projects'
-    parent: 'root'
+    parent: 'main'
     controller: 'ProjectsController'
     controllerAs: 'projects'
     templateUrl: 'projects/show.html'
     resolve: auth: redirectAuth
 
-  .state 'project.detail',
+  .state 'projects.detail',
     url: '/:projectId'
-    parent: 'project'
+    parent: 'projects'
     templateUrl: 'projects/detail.html'
 
   $urlRouterProvider.otherwise '/projects'
