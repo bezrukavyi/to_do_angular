@@ -4,6 +4,11 @@
 .md-datepicker-input-mask {
   display: none;
 }
+@media (min-width: 960px) {
+ md-toast.md-top {
+    top: 60px;
+  }
+}
 .show-gt-md {
   @media (max-width: 960px) {
     display: none;
@@ -180,4 +185,19 @@
   min-height: 20px;
   font-size: 14px;
   font-weight: 500;
+}
+.auth-form {
+  margin-bottom: 25px;
+  md-whiteframe {
+    background-color: #fff;
+    @media (max-width: 960px) {
+      max-width: 45% !important;
+    }
+    @media (max-width: 599px) {
+      max-width: 90% !important;
+    }
+  }
+  md-content {
+    background-color: #fff;
+  }
 }

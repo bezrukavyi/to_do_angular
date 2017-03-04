@@ -4,7 +4,7 @@ feature 'Sign in', type: :feature, js: true do
   scenario 'When user success sign in' do
     user = create :user
     sign_in email: user.email, password: user.password
-    expect(page).to have_content 'Success singed in'
+    expect(page).to have_content I18n.t('auth.success.sign_in')
     expect(page).to have_css('#sign-out')
   end
 
@@ -13,7 +13,7 @@ feature 'Sign in', type: :feature, js: true do
     sign_in email: user.email
     sleep 3
     visit '#!/sign_in'
-    expect(page).to have_content 'You have already sined in'
+    expect(page).to have_content I18n.t('auth.error.signed_in')
   end
 
   scenario 'When user write invalid data' do

@@ -2,6 +2,32 @@ en:
   app:
     title: Angular ToDo
   project:
+    default_title: New project
     empty_title: Choose project or create new
     list_title: Your projects
     new: New project
+    success:
+      created: "New project success created"
+      deleted: "Project '%{title}' success deleted"
+  task:
+    new: New task
+    success:
+      created: "Task '%{title}' success created"
+      deleted: "Task '%{title}' success deleted"
+  auth:
+    email: Email
+    password: Password
+    password_confirmation: Password confirmation
+    sign_up: Sign up
+    sign_in: Sign in
+    registrations: Go to Registrations
+    login: Go to Login
+    success:
+      sign_up: Success registered. Confirmation email sent to you
+      sign_in: Success signed in
+      sign_out: Success signe out
+    error:
+      must_authed: You must be authorized
+      signed_in: You have already authorized
+
+  close: Close

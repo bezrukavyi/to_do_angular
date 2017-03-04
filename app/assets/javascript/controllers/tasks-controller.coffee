@@ -1,4 +1,4 @@
-TasksController = (Task, TodoToast) ->
+TasksController = (Task, TodoToast, I18n) ->
   ctrl = this
   ctrl.editedTask = null
 
@@ -11,7 +11,7 @@ TasksController = (Task, TodoToast) ->
       (response) ->
         project.tasks.push(response)
         ctrl.resetNew(form)
-        TodoToast.success("Task '#{response.title}' success created")
+        TodoToast.success(I18n.t('task.success.created', title: response.title))
       ), (response) ->
         TodoToast.error(response.data.error)
 
@@ -36,7 +36,7 @@ TasksController = (Task, TodoToast) ->
       (response) ->
         index = project.tasks.indexOf(task)
         project.tasks.splice(index, 1) if (index != -1)
-        TodoToast.success("Task '#{response.title}' success deleted")
+        TodoToast.success(I18n.t('task.success.deleted', title: response.title))
       ), (response) ->
         TodoToast.error(response.data.error)
 
@@ -51,5 +51,6 @@ TasksController = (Task, TodoToast) ->
 angular.module('toDoApp').controller 'TasksController', [
   'Task',
   'TodoToast',
+  'I18n',
   TasksController
 ]

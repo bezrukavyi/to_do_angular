@@ -40,6 +40,6 @@
   $translateProvider.useLocalStorage()
   $translateProvider.forceAsyncReload(true)
 
-@app.run ($rootScope, $translate) ->
+@app.run ($rootScope, $translate, $filter) ->
   $rootScope.changeLocale = (langKey) ->
     $translate.use(langKey)

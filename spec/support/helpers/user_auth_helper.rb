@@ -3,9 +3,9 @@ module Support
     def sign_up(form_id, options)
       visit '#!/sign_up'
       within "##{form_id}" do
-        fill_in 'Email', with: options[:email]
+        fill_in I18n.t('auth.email'), with: options[:email]
         fill_passwords(options[:password])
-        click_button 'Sign up'
+        click_button I18n.t('auth.sign_up')
       end
     end
 
@@ -13,10 +13,10 @@ module Support
       options[:password] ||= attributes_for(:user, :default_password)[:password]
       visit '#!/sign_in'
       within "##{form_id}" do
-        fill_in 'Email', with: options[:email]
-        fill_in 'Password', with: options[:password]
+        fill_in I18n.t('auth.email'), with: options[:email]
+        fill_in I18n.t('auth.password'), with: options[:password]
         return yield if block_given?
-        click_button 'Sign in'
+        click_button I18n.t('auth.sign_in')
       end
     end
 
@@ -29,7 +29,7 @@ module Support
 
     def fill_passwords(password, type = 'password')
       fill_in type.capitalize, with: password
-      fill_in 'Password confirmation', with: password
+      fill_in I18n.t('auth.password_confirmation'), with: password
     end
   end
 end

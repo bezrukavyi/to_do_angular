@@ -3,12 +3,7 @@ module Api
     respond_to :json
 
     def show
-      @locale = params[:id].to_sym
-
-      @translations = I18n.with_locale(@locale) do
-        I18n.backend.send(:translations)[@locale]
-      end
-
+      @translations = TranslateService.call(params, :angular)
       render json: @translations
     end
   end

@@ -1,4 +1,4 @@
-SessionsController = ($auth, $rootScope, $state, TodoToast, Omniauth) ->
+SessionsController = ($auth, $rootScope, $state, I18n, TodoToast, Omniauth) ->
   ctrl = this
   ctrl.new = {}
 
@@ -7,7 +7,7 @@ SessionsController = ($auth, $rootScope, $state, TodoToast, Omniauth) ->
     $auth.submitLogin(ctrl.new).then (
       (response) ->
         $state.go 'project'
-        TodoToast.success('Success singed in')
+        TodoToast.success(I18n.t('auth.success.sign_in'))
         ctrl.resetNew(form)
       ), (response) ->
         TodoToast.error(response.errors[0])
@@ -22,4 +22,12 @@ SessionsController = ($auth, $rootScope, $state, TodoToast, Omniauth) ->
 
   return
 
-angular.module('toDoApp').controller 'SessionsController', ['$auth', '$rootScope', '$state', 'TodoToast', 'Omniauth', SessionsController]
+angular.module('toDoApp').controller 'SessionsController', [
+  '$auth',
+  '$rootScope',
+  '$state',
+  'I18n',
+  'TodoToast',
+  'Omniauth',
+  SessionsController
+]

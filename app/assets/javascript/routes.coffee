@@ -38,25 +38,25 @@ angular.module('toDoApp').config ['$stateProvider', '$urlRouterProvider', ($stat
   return
 ]
 
-redirectAuth = ($auth, $state, TodoToast) ->
+redirectAuth = ($auth, $state, I18n, TodoToast) ->
   $auth.validateUser().catch (res) ->
-    TodoToast.error('Must authed')
+    TodoToast.error(I18n.t('auth.error.must_authed'))
     $state.go 'sign_in'
     return
 
-redirectAuthed = ($auth, $state, $location, TodoToast) ->
+redirectAuthed = ($auth, $state, $location, I18n, TodoToast) ->
   $auth.validateUser()
     .then(() ->
       $location.path('/')
-      TodoToast.error('You have already sined in')
+      TodoToast.error(I18n.t('auth.error.signed_in'))
       return
     )
     .catch(() ->
       return
     )
 
-angular.module('toDoApp').run ($rootScope, $state, $auth, TodoToast) ->
+angular.module('toDoApp').run ($rootScope, $state, $auth, I18n, TodoToast) ->
   $rootScope.$on 'auth:logout-success', (ev) ->
     $state.go 'sign_in'
-    TodoToast.success('Success sign out')
+    TodoToast.success(I18n.t('auth.success.sign_out'))
   return

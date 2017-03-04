@@ -4,7 +4,7 @@ feature 'Sign up', type: :feature, js: true do
   scenario "User haven't account" do
     user_attrs = attributes_for(:user)
     sign_up 'new_user', user_attrs
-    expect(page).to have_content 'Confirmation email sent to you'
+    expect(page).to have_content I18n.t('auth.success.sign_up')
   end
 
   scenario 'User use invalid email' do
@@ -17,6 +17,6 @@ feature 'Sign up', type: :feature, js: true do
     user = create :user, :default_password
     sign_in 'new_session', email: user.email
     visit '#!/sign_up'
-    expect(page).to have_content 'You have already sined in'
+    expect(page).to have_content I18n.t('auth.error.signed_in')
   end
 end

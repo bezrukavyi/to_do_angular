@@ -15,7 +15,8 @@ feature 'Delete project', type: :feature, js: true do
 
   scenario 'user can delete project' do
     delete_project
-    expect(page).to have_content("Project '#{@project.title}' success deleted")
+    expect(page).to have_content(I18n.t('project.success.deleted',
+                                        title: @project.title))
     check_hidden_title(@project, :title, false)
   end
 end

@@ -13,7 +13,7 @@ feature 'Create project', type: :feature, js: true do
 
   scenario 'user can create new project' do
     create_project
-    expect(page).to have_content('Project success created')
+    expect(page).to have_content(I18n.t('project.success.created'))
     check_hidden_title(Project.last)
   end
 end

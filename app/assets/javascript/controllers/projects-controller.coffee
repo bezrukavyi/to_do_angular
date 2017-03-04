@@ -1,4 +1,4 @@
-ProjectsController = (Project, $stateParams, $state, $filter, TodoToast) ->
+ProjectsController = (Project, $stateParams, $state, $filter, I18n, TodoToast) ->
   $state.transitionTo('project.list')
 
   ctrl = this
@@ -30,11 +30,12 @@ ProjectsController = (Project, $stateParams, $state, $filter, TodoToast) ->
         TodoToast.error(response.data.error)
 
   ctrl.create = () ->
-    Project.create(title: 'New project').$promise.then (
+    options = { title: I18n.t('project.default_title') }
+    Project.create(options).$promise.then (
       (response) ->
         ctrl.all.push(response)
         ctrl.currentProject = response
-        TodoToast.success('Project success created')
+        TodoToast.success(I18n.t('project.success.created'))
       ), (response) ->
         TodoToast.error(response.data.error)
 
@@ -55,7 +56,7 @@ ProjectsController = (Project, $stateParams, $state, $filter, TodoToast) ->
       (response) ->
         ctrl.delete_from_list(ctrl.currentProject)
         ctrl.currentProject = null
-        TodoToast.success("Project '#{response.title}' success deleted")
+        TodoToast.success(I18n.t('project.success.deleted', title: response.title))
       ), (response) ->
         TodoToast.error(response.data.error)
 
@@ -76,6 +77,7 @@ angular.module('toDoApp').controller 'ProjectsController', [
   '$stateParams',
   '$state',
   '$filter',
+  'I18n',
   'TodoToast',
   ProjectsController
 ]

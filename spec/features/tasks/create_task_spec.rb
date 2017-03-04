@@ -17,7 +17,8 @@ feature 'Create task', type: :feature, js: true do
   scenario 'user can create new task' do
     attributes = attributes_for(:task)
     create_task('new-task-form', attributes)
-    expect(page).to have_content("Task '#{attributes[:title]}' success created")
+    expect(page).to have_content(I18n.t('task.success.created',
+                                        title: attributes[:title]))
     check_hidden_title(Task.last)
   end
 
