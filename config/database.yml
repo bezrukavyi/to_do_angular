@@ -81,5 +81,4 @@ test:
 production:
   <<: *default
   database: test_angular_production
-  username: test_angular
   password: <%= ENV['TEST_ANGULAR_DATABASE_PASSWORD'] %>
