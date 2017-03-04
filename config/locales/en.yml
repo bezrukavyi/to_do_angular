@@ -29,5 +29,10 @@ en:
     error:
       must_authed: You must be authorized
       signed_in: You have already authorized
-
   close: Close
+  language:
+    russian: Russian
+    english: English
+  validation:
+    required: This is required
+    max_length: Must be less than %{value} characters long

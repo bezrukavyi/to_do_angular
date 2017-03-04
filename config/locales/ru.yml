@@ -29,4 +29,10 @@ ru:
     error:
       must_authed: Вы должны быть авторизованным
       signed_in: Вы уже авторизованы
+  language:
+    russian: Русский
+    english: Английский
   close: Закрыть
+  validation:
+    required: Это обязтельное поле
+    max_length: Должно быть меньше чем %{value} символов

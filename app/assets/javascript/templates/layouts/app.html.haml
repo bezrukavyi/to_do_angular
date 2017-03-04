@@ -14,10 +14,10 @@
         %md-menu-content{ 'ng-mouseleave': '$mdMenu.close()', width: '4' }
           %md-menu-item
             %md-button{ 'ng-click': "changeLocale('en')" }
-              English
+              {{ 'language.english' | translate }}
           %md-menu-item
             %md-button{ 'ng-click': "changeLocale('ru')" }
-              Russian
+              {{ 'language.russian' | translate }}
 
       %md-button#sign-out.md-icon-button.md-button.md-ink-ripple
         %md-icon{ 'ng-click': 'signOut()' } exit_to_app

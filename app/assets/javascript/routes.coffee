@@ -23,17 +23,19 @@ angular.module('toDoApp').config ['$stateProvider', '$urlRouterProvider', ($stat
     resolve: auth: redirectAuthed
 
   .state 'project',
-    url: '/'
+    url: '/projects'
     parent: 'root'
     controller: 'ProjectsController'
     controllerAs: 'projects'
     templateUrl: 'projects/show.html'
     resolve: auth: redirectAuth
 
-  .state 'project.list',
-    templateUrl: 'projects/list.html'
+  .state 'project.detail',
+    url: '/:projectId'
+    parent: 'project'
+    templateUrl: 'projects/detail.html'
 
-  $urlRouterProvider.otherwise '/'
+  $urlRouterProvider.otherwise '/projects'
 
   return
 ]

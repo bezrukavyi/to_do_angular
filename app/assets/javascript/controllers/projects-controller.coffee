@@ -1,9 +1,10 @@
 ProjectsController = (Project, $stateParams, $state, $filter, I18n, TodoToast) ->
-  $state.transitionTo('project.list')
 
   ctrl = this
   ctrl.currentProject = null
   ctrl.all = null
+
+  ctrl.projectId = $state.params.projectId
 
   ctrl.date = new Date()
   ctrl.minDate = new Date(
@@ -35,6 +36,7 @@ ProjectsController = (Project, $stateParams, $state, $filter, I18n, TodoToast) -
       (response) ->
         ctrl.all.push(response)
         ctrl.currentProject = response
+        $state.go('project.detail', projectId: response.id)
         TodoToast.success(I18n.t('project.success.created'))
       ), (response) ->
         TodoToast.error(response.data.error)
@@ -69,6 +71,7 @@ ProjectsController = (Project, $stateParams, $state, $filter, I18n, TodoToast) -
     ctrl.all.splice(index, 1) if (index != -1)
 
   ctrl.index()
+  ctrl.show(id: ctrl.projectId) if ctrl.projectId
 
   return
 
