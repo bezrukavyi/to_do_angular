@@ -5,8 +5,7 @@ Omniauth = ($auth, $state, TodoToast) ->
     return unless provider
     $auth.authenticate(provider).then (
       (response) ->
-        $state.go 'project'
-        console.log(response)
+        $state.go 'projects'
         TodoToast.success('Success singed')
       ), (response) ->
         TodoToast.error('Error authed')

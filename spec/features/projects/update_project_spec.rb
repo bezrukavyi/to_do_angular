@@ -32,6 +32,6 @@ feature 'Update project', type: :feature, js: true do
 
   scenario 'user update title with invalid data' do
     update_project_title('')
-    expect(page).to have_content('This is required.')
+    expect(page).to have_content(I18n.t('validation.required'))
   end
 end

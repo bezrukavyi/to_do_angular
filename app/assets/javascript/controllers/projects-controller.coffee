@@ -36,7 +36,7 @@ ProjectsController = (Project, $stateParams, $state, $filter, I18n, TodoToast) -
       (response) ->
         ctrl.all.push(response)
         ctrl.currentProject = response
-        $state.go('project.detail', projectId: response.id)
+        $state.go('projects.detail', projectId: response.id)
         TodoToast.success(I18n.t('project.success.created'))
       ), (response) ->
         TodoToast.error(response.data.error)

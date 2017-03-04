@@ -25,7 +25,7 @@ feature 'Update task', type: :feature, js: true do
 
   scenario 'user write invalid task title' do
     update_task_title(@task, nil)
-    expect(page).to have_content('This is required.')
+    expect(page).to have_content(I18n.t('validation.required'))
   end
 
   scenario 'user can check task' do

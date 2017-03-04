@@ -6,7 +6,7 @@ SessionsController = ($auth, $rootScope, $state, I18n, TodoToast, Omniauth) ->
     return if form.$invalid
     $auth.submitLogin(ctrl.new).then (
       (response) ->
-        $state.go 'project'
+        $state.go 'projects'
         TodoToast.success(I18n.t('auth.success.sign_in'))
         ctrl.resetNew(form)
       ), (response) ->

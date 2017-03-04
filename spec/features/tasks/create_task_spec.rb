@@ -25,6 +25,6 @@ feature 'Create task', type: :feature, js: true do
   scenario 'when user write invalid title' do
     attributes = attributes_for(:task, title: nil)
     create_task('new-task-form', attributes)
-    expect(page).to have_content('This is required.')
+    expect(page).to have_content(I18n.t('validation.required'))
   end
 end

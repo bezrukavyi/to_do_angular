@@ -43,7 +43,8 @@ describe Api::ProjectsController, type: :controller do
     it 'returns an error if the project does not belongs to user' do
       get :show, params: { id: @another_project.id }
       parsed_response = JSON.parse(response.body)
-      expect(parsed_response['status']).to eq('forbidden')
+      expect(parsed_response['error'])
+        .to eq('You are not authorized to access this page.')
     end
   end
 
