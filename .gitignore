@@ -16,5 +16,6 @@
 # Ignore Byebug command history file.
 .byebug_history
 .overcommit.yml
+vendor/*
 .rubocop.yml
 config/application.yml
