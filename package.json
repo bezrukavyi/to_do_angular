@@ -11,8 +11,5 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/bezrukavyi/to_do_angular"
-  },
-  "scripts": {
-    "postinstall": "./node_modules/bower/bin/bower install"
   }
 }

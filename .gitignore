@@ -17,5 +17,4 @@
 .byebug_history
 .overcommit.yml
 .rubocop.yml
-vendor/assets/bower_components/*
 config/application.yml
