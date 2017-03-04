@@ -7,7 +7,6 @@ feature 'Create project', type: :feature, js: true do
 
   background do
     sign_in email: user.email
-    visit '#!/'
     sleep 1
   end
 

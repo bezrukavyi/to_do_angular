@@ -8,7 +8,6 @@ feature 'Update project', type: :feature, js: true do
   background do
     @project = create :project, user: user
     sign_in email: user.email
-    visit '#!/'
     sleep 1
     choose_project(@project)
   end

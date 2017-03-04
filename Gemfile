@@ -45,8 +45,6 @@ gem 'figaro'
 
 gem 'cancancan'
 
-gem 'rails_12factor', group: :production
-
 group :development, :test do
   gem 'byebug', platform: :mri
   gem 'factory_girl_rails'

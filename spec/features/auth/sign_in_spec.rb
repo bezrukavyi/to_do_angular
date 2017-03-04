@@ -12,7 +12,7 @@ feature 'Sign in', type: :feature, js: true do
     user = create :user, :default_password
     sign_in email: user.email
     sleep 3
-    visit '#!/sign_in'
+    visit '/sign_in'
     expect(page).to have_content I18n.t('auth.error.signed_in')
   end
 

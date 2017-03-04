@@ -1,4 +1,4 @@
-angular.module('toDoApp').config ['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterProvider) ->
+angular.module('toDoApp').config ['$stateProvider', '$urlRouterProvider', '$locationProvider', ($stateProvider, $urlRouterProvider, $locationProvider) ->
   $stateProvider
   .state 'main',
     url: ''
@@ -35,6 +35,7 @@ angular.module('toDoApp').config ['$stateProvider', '$urlRouterProvider', ($stat
     parent: 'projects'
     templateUrl: 'projects/detail.html'
 
+  $locationProvider.html5Mode(true)
   $urlRouterProvider.otherwise '/projects'
 
   return
@@ -49,7 +50,7 @@ redirectAuth = ($auth, $state, I18n, TodoToast) ->
 redirectAuthed = ($auth, $state, $location, I18n, TodoToast) ->
   $auth.validateUser()
     .then(() ->
-      $location.path('/')
+      $state.go 'projects'
       TodoToast.error(I18n.t('auth.error.signed_in'))
       return
     )

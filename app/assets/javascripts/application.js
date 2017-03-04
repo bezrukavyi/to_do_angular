@@ -17,5 +17,5 @@
 //= require angular-translate-handler-log
 //= require angular-dynamic-locale
 
-//= require_tree .
 //= require_tree ./templates
+//= require_tree .

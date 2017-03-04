@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
-  root to: 'application#angular'
-
+  root 'application#angular'
 
   namespace 'api', defaults: { format: :json } do
     mount_devise_token_auth_for 'User', at: 'auth',
@@ -10,4 +9,6 @@ Rails.application.routes.draw do
     resources :projects
     resources :tasks
   end
+
+  get '*path', to: 'application#angular'
 end
