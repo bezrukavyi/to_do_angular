@@ -22,5 +22,7 @@ module ToDoAngular
       g.test_framework :rspec
       g.fixture_replacement :factory_girl, dir: 'spec/factories'
     end
+    config.assets.precompile.shift
+    config.assets.paths << Rails.root.join('vendor', 'assets', 'bower_components')
   end
 end
