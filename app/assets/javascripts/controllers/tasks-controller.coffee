@@ -22,12 +22,7 @@ TasksController = (Task, TodoToast, I18n) ->
 
   ctrl.update = (form, task) ->
     return if form.$invalid
-    options = {
-      id: task.id,
-      title: form.title.$viewValue,
-      checked: form.checked.$viewValue
-    }
-    Task.update(options).$promise.then(null, (response) ->
+    Task.update(task).$promise.then(null, (response) ->
       TodoToast.error(response.data.error)
     )
 

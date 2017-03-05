@@ -8,8 +8,8 @@
 //= require angular-resource/angular-resource
 //= require angular-cookie
 //= require angular-cookies
+//= require angular-file-upload
 //= require ng-token-auth
-//= require jquery
 
 //= require angular-translate
 //= require angular-translate-loader-static-files

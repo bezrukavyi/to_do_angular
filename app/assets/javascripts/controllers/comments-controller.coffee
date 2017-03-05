@@ -1,4 +1,4 @@
-CommentsController = (Comment, TodoToast, I18n) ->
+CommentsController = (Comment, TodoDialog, TodoToast, I18n) ->
   ctrl = this
   ctrl.all = null
 
@@ -39,10 +39,12 @@ CommentsController = (Comment, TodoToast, I18n) ->
 
   ctrl.update = (form, comment) ->
     return if form.$invalid
-    options = { id: comment.id, title: form.title.$viewValue }
-    Comment.default.update(options).$promise.then(null, (response) ->
+    Comment.default.update(comment).$promise.then(null, (response) ->
       TodoToast.error(response.data.error)
     )
+
+  ctrl.upload_open = (comment) ->
+    TodoDialog.call(comment, ctrl, 'upload')
 
   ctrl.resetNew = (form) ->
     form.$setPristine()
@@ -54,6 +56,7 @@ CommentsController = (Comment, TodoToast, I18n) ->
 
 angular.module('toDoApp').controller 'CommentsController', [
   'Comment',
+  'TodoDialog',
   'TodoToast',
   'I18n',
   CommentsController

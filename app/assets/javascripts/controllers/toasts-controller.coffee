@@ -3,7 +3,7 @@ ToastsController = ($mdToast, message) ->
   ctrl.message = message
   ctrl.mdToast = $mdToast
 
-  this.close = () ->
+  ctrl.close = () ->
     ctrl.mdToast.hide()
 
   return

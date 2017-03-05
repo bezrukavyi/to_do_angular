@@ -2,7 +2,7 @@ TodoToast = ($mdToast) ->
   service = this
 
   service.default_options = {
-    hideDelay: 1000,
+    hideDelay: 1250,
     position: 'top right',
     controller: 'ToastsController',
     controllerAs: 'toast'

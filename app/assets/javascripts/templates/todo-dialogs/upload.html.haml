@@ -1,0 +1,15 @@
+%md-dialog{ 'aria-label': 'Upload dialog' }
+  %form{ 'ng-cloak': '', name: 'uploadForm' }
+    %md-toolbar
+      .md-toolbar-tools
+        %h2 Upload to {{ dialog.object.title }}
+        %span{ flex: '' }
+        %md-button.md-icon-button{ 'ng-click': 'dialog.close()' }
+          %md-icon{'aria-label': 'Close dialog'} close
+    %md-dialog-content
+      .md-dialog-content
+        %p {{ dialog.object_ctrl }}
+
+    %md-dialog-actions{ layout: 'row' }
+      %md-button{ 'ng-click': 'dialog.close()' } Close
+      %md-button{ 'ng-click': 'dialog.object_ctrl.update(uploadForm, dialog.object)' } Upload
