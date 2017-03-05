@@ -2,6 +2,10 @@ module Api
   class CommentsController < ApplicationController
     load_and_authorize_resource
 
+    def index
+      render json: @comments
+    end
+
     def create
       if @comment.save
         render json: @comment

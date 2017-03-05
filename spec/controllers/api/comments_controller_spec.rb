@@ -12,6 +12,18 @@ describe Api::CommentsController, type: :controller do
     auth_request user
   end
 
+  describe 'GET #index' do
+    before do
+      get :index
+    end
+    it 'get all projects' do
+      expect(assigns(:comments)).to eq(@comments)
+    end
+    it 'returns a successful 200 response' do
+      expect(response).to be_success
+    end
+  end
+
   describe 'POST #create' do
     let(:valid_params) do
       { comment: attributes_for(:comment, task_id: task.id) }
