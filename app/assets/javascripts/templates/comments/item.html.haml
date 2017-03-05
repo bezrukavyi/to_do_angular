@@ -1,7 +1,7 @@
 .comment-content.todo-item{ layout: 'row', layout_align: 'space-between center' }
   %form.comment-edit{ flex: '', id: 'comment-form-{{comment.id}}', name: 'editCommentForm' }
     %md-input-container.md-block.with-border{ 'ng-class': "{ 'read-field': !editCommentForm.edited }" }
-      %textarea.title{ id: 'comment-title-{{comment.id}}', 'aria-label': 'Title', 'md-maxlength': '100', 'md-no-asterisk': '', required: '', name: 'title', ng_model: 'comment.title' }
+      %textarea.title{ 'aria-label': 'Title', 'md-maxlength': '100', 'md-no-asterisk': '', required: '', name: 'title', ng_model: 'comment.title' }
       %span.hidden {{ comment.title }}
       %div.validators{ ng_messages: 'editCommentForm.title.$error' }
         %div{ ng_message: 'required' } This is required.
@@ -9,6 +9,6 @@
 
   %md-actions.todo-actions
     %md-button.md-icon-button.md-ink-ripple.md-18
-      %md-icon{ id: 'edit-task-{{comment.id}}', 'ng-click': 'ctrl.edit(editCommentForm, comment)' } edit
+      %md-icon{ id: 'edit-comment-{{comment.id}}', 'ng-click': 'ctrl.edit(editCommentForm, comment)' } edit
     %md-button.md-icon-button.md-button.md-ink-ripple.md-18
-      %md-icon{ id: 'delete-task-{{comment.id}}', 'ng-click': 'ctrl.delete(comment)' } delete
+      %md-icon{ id: 'delete-comment-{{comment.id}}', 'ng-click': 'ctrl.delete(comment)' } delete

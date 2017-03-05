@@ -43,8 +43,8 @@ angular.module('toDoApp').config ['$stateProvider', '$urlRouterProvider', '$loca
 
 redirectAuth = ($auth, $state, I18n, TodoToast) ->
   $auth.validateUser().catch (res) ->
-    TodoToast.error(I18n.t('auth.error.must_authed'))
     $state.go 'sign_in'
+    TodoToast.error(I18n.t('auth.error.must_authed'))
     return
 
 redirectAuthed = ($auth, $state, $location, I18n, TodoToast) ->

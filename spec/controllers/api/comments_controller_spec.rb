@@ -14,7 +14,7 @@ describe Api::CommentsController, type: :controller do
 
   describe 'GET #index' do
     before do
-      get :index
+      get :index, params: { task_id: task.id }
     end
     it 'get all projects' do
       expect(assigns(:comments)).to eq(@comments)
@@ -26,7 +26,7 @@ describe Api::CommentsController, type: :controller do
 
   describe 'POST #create' do
     let(:valid_params) do
-      { comment: attributes_for(:comment, task_id: task.id) }
+      { task_id: task.id, comment: attributes_for(:comment) }
     end
 
     it 'returns a successful 200 response' do
@@ -38,8 +38,8 @@ describe Api::CommentsController, type: :controller do
         .to change { @comments.reload.count }.by(1)
     end
     it 'when data invalid' do
-      post :create, params: { comment: attributes_for(:comment, :invalid,
-                                                      task_id: task.id) }
+      post :create, params: { task_id: task.id,
+                              comment: attributes_for(:comment, :invalid) }
       parsed_response = JSON.parse(response.body)
       expect(parsed_response['error']).not_to be_blank
     end
