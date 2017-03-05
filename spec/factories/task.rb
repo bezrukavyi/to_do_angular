@@ -4,6 +4,7 @@ FactoryGirl.define do
     completed_at FFaker::Time.date
     checked false
     priority { rand(0..10) }
+    project
 
     trait :checked do
       checked true
@@ -13,8 +14,8 @@ FactoryGirl.define do
       title nil
     end
 
-    trait :with_project do
-      project { create :project }
+    trait :with_comments do
+      comments { create_list :comment, 2 }
     end
   end
 end
