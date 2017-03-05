@@ -1,6 +1,8 @@
 module Api
   class CommentsController < ApplicationController
-    load_and_authorize_resource
+    load_and_authorize_resource :task
+    load_and_authorize_resource through: :task, only: [:index, :create]
+    load_and_authorize_resource except: [:index, :create]
 
     def index
       render json: @comments

@@ -24,9 +24,14 @@
   text-align: center;
 }
 .read-field {
+  &:not(.with-border) {
+    input, textarea {
+      border-color: rgba(255, 255, 255, 0);
+    }
+  }
   input, textarea {
+    resize: none;
     transition: 300ms;
-    border-color: rgba(255, 255, 255, 0);
     cursor: default;
     pointer-events: none;
   }
@@ -78,7 +83,16 @@
 }
 .todo-item-wrap {
   min-height: 50px;
-  margin-bottom: 15px;
+  margin: 0 0 15px 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.task-wrap {
+  padding: 0 20px;
+  margin-bottom: 20px;
+  @media (max-width: 320px) {
+    padding: 0.25em;
+  }
 }
 .todo-params {
   flex: 1;
@@ -200,4 +214,14 @@
   md-content {
     background-color: #fff;
   }
+}
+.comments-wrap {
+  padding-left: 7%;
+}
+.comment-content {
+  padding: 0;
+  margin-bottom: 10px;
+}
+.comment-field {
+  margin: 0;
 }

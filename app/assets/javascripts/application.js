@@ -9,6 +9,7 @@
 //= require angular-cookie
 //= require angular-cookies
 //= require ng-token-auth
+//= require jquery
 
 //= require angular-translate
 //= require angular-translate-loader-static-files
