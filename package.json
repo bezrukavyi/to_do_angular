@@ -13,6 +13,6 @@
     "url": "https://github.com/bezrukavyi/to_do_angular"
   },
   "scripts": {
-    "postinstall": "bower cache clean && bower install"
+    "postinstall": "./node_modules/bower/bin/bower install"
   }
 }
