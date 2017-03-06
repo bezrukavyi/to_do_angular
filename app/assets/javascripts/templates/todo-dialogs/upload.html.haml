@@ -1,5 +1,5 @@
 %md-dialog{ 'aria-label': 'Upload dialog', 'ng-controller': 'AttachmentController as attachmentCtrl' }
-  %form{ 'ng-cloak': '', name: 'uploadForm' }
+  %form{ id: "attachment-upload-{{ dialog.object.id }}", 'ng-cloak': '', name: 'uploadForm' }
     %md-toolbar
       .md-toolbar-tools{ layout: 'row', layout_align: 'space-between center' }
         %h2 {{ 'attachment.title' | translate:{name: dialog.object.title} }}
@@ -21,10 +21,11 @@
             %a{ 'ng-href': '{{ attachment.file.url }}', target: '_blank' }
               %img{ 'ng-src': '{{ attachment.file.url }}' }
 
-          %md-button.md-secondary{ 'ng-click': 'attachmentCtrl.delete(attachment, dialog.object)' } {{ 'remove' | translate }}
+          %md-button.md-secondary{ id: 'delete-attachment-{{ attachment.id }}', 'ng-click': 'attachmentCtrl.delete(attachment, dialog.object)' } {{ 'remove' | translate }}
           %md-divider
 
       %md-dialog-actions{ layout: 'row', layout_align: 'center' }
-        %md-button.md-raised.md-primary{ layout: 'row', 'ngf-select': '', 'ngf-change': 'attachmentCtrl.upload($files, dialog.object, dialog.type)', 'ngf-multiple': 'true' }
+        %md-button.md-raised.md-primary{ layout: 'row', 'ngf-change': 'attachmentCtrl.upload($files, dialog.object, dialog.type)', 'ngf-select': '', 'ngf-multiple': 'true' }
+          %input.hidden{ name: 'file', type: 'file', 'ngf-change': 'attachmentCtrl.upload($files, dialog.object, dialog.type)', 'ngf-select': '', 'ngf-multiple': 'true' }
           %span {{ 'attachment.upload' | translate }}
           %md-icon{'aria-label': 'Upload file'} file_upload

@@ -19,5 +19,9 @@ module Support
       end
       find("#edit-comment-#{id}").click
     end
+
+    def show_attachment(comment)
+      find("#attachment-comment-#{comment.id}", visible: :hidden).click
+    end
   end
 end
