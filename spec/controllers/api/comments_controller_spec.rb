@@ -61,7 +61,6 @@ describe Api::CommentsController, type: :controller do
     it 'when data invalid' do
       patch :update, params: { id: @comment.id,
                                comment: attributes_for(:comment, :invalid) }
-
       parsed_response = JSON.parse(response.body)
       expect(parsed_response['error']).not_to be_blank
     end

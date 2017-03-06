@@ -7,10 +7,16 @@ Rails.application.routes.draw do
 
     resources :translations, only: :show
     resources :projects
+
     resources :tasks do
       resources :comments, only: [:create, :index]
     end
-    resources :comments, except: [:create, :index]
+
+    resources :comments, except: [:create, :index] do
+      resources :attachments, only: :create
+    end
+
+    resources :attachments, only: :destroy
   end
 
   get '*path', to: 'application#angular'

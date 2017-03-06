@@ -8,11 +8,15 @@ TodoDialog = ($mdDialog) ->
     clickOutsideToClose: true
   }
 
-  service.call = (object, object_ctrl, template) ->
+  service.upload = (object, object_ctrl, type) ->
     options = service.default_options
     Object.assign(options, {
-      templateUrl: "todo-dialogs/#{template}.html",
-      locals: { object: object, object_ctrl: object_ctrl }
+      templateUrl: 'todo-dialogs/upload.html',
+      locals: {
+        type: type
+        object: object,
+        object_ctrl: object_ctrl,
+      }
     })
     $mdDialog.show(options)
 

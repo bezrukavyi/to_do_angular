@@ -19,3 +19,4 @@
 vendor/*
 .rubocop.yml
 config/application.yml
+public/uploads/*

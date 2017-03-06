@@ -14,6 +14,19 @@ ru:
     success:
       created: "Задача '%{title}' успешно создана"
       deleted: "Задача '%{title}' успешно удалена"
+  comment:
+    success:
+      created: "Комментарий '%{title}' успешно создан"
+      deleted: "Комментарий '%{title}' успешно удален"
+  attachment:
+    title: "Загрузка файлов для '%{name}'"
+    upload: Загрузить файл
+    success:
+      created: "Файл '%{name}' успешно загружен"
+      deleted: "Файл '%{name}' успешно удален"
+    error:
+      unsupported: "Загрузка файла не поддерживается"
+    empty_files: Нет ни одного загруженного файла
   auth:
     email: Эл. почта
     password: Пароль
@@ -32,7 +45,8 @@ ru:
   language:
     russian: Русский
     english: Английский
-  close: Закрыть
   validation:
     required: Это обязтельное поле
     max_length: Должно быть меньше чем %{value} символов
+  close: Закрыть
+  remove: Удалить

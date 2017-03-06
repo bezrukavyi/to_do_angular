@@ -8,7 +8,7 @@
   'ngCookies',
   'pascalprecht.translate',
   'tmh.dynamicLocale',
-  'angularFileUpload'
+  'ngFileUpload'
 ])
 
 @app.config ($mdThemingProvider, $mdIconProvider) ->

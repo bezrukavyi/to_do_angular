@@ -1,7 +1,8 @@
-DialogsController = ($mdDialog, object, object_ctrl) ->
+DialogsController = ($mdDialog, object, object_ctrl, type) ->
   ctrl = this
   ctrl.object = object
   ctrl.object_ctrl = object_ctrl
+  ctrl.type = type
   ctrl.mdDialog = $mdDialog
 
   ctrl.close = () ->
@@ -13,5 +14,6 @@ angular.module('toDoApp').controller 'DialogsController', [
   '$mdDialog',
   'object',
   'object_ctrl',
+  'type',
   DialogsController
 ]

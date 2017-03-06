@@ -1,4 +1,4 @@
-CommentsController = (Comment, TodoDialog, TodoToast, I18n) ->
+CommentsController = (Comment, TodoDialog, TodoToast, I18n, Attachment) ->
   ctrl = this
   ctrl.all = null
 
@@ -44,7 +44,7 @@ CommentsController = (Comment, TodoDialog, TodoToast, I18n) ->
     )
 
   ctrl.upload_open = (comment) ->
-    TodoDialog.call(comment, ctrl, 'upload')
+    TodoDialog.upload(comment, ctrl, 'comment')
 
   ctrl.resetNew = (form) ->
     form.$setPristine()
@@ -59,5 +59,6 @@ angular.module('toDoApp').controller 'CommentsController', [
   'TodoDialog',
   'TodoToast',
   'I18n',
+  'Attachment',
   CommentsController
 ]
