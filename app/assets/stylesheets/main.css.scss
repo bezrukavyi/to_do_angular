@@ -237,3 +237,12 @@
     display: block;
   }
 }
+.todo-toolbar {
+  position: relative;
+  .loader {
+    margin-right: 35px;
+    path {
+      stroke: #fff;
+    }
+  }
+}

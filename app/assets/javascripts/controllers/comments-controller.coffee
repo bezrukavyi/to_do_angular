@@ -6,11 +6,14 @@ CommentsController = (Comment, TodoDialog, TodoToast, I18n, Attachment) ->
 
   ctrl.index = (task) ->
     return if ctrl.all
+    ctrl.gotComment = false
     Comment.nested.index(task_id: task.id).$promise.then (
       (response) ->
         ctrl.all = response
+        ctrl.gotComment = true
       ), (response) ->
         TodoToast.error(response.data.error)
+        ctrl.gotComment = true
 
   ctrl.create = (form, task) ->
     return if form.$invalid

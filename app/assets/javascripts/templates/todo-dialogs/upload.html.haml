@@ -25,7 +25,9 @@
           %md-divider
 
       %md-dialog-actions{ layout: 'row', layout_align: 'center' }
-        %md-button.md-raised.md-primary{ layout: 'row', 'ngf-change': 'attachmentCtrl.upload($files, dialog.object, dialog.type)', 'ngf-select': '', 'ngf-multiple': 'true' }
+        .loader{ layout: 'row', layout_align: 'center', 'data-after-loaded': 'hide' }
+          %md-progress-circular{ 'md-mode': 'indeterminate', 'md-diameter': 35 }
+        %md-button.md-raised.md-primary{ layout: 'row', 'data-after-loaded': 'show', 'ngf-change': 'attachmentCtrl.upload($files, dialog.object, dialog.type)', 'ngf-select': '', 'ngf-multiple': 'true' }
           %input.hidden{ name: 'file', type: 'file', 'ngf-change': 'attachmentCtrl.upload($files, dialog.object, dialog.type)', 'ngf-select': '', 'ngf-multiple': 'true' }
           %span {{ 'attachment.upload' | translate }}
           %md-icon{'aria-label': 'Upload file'} file_upload

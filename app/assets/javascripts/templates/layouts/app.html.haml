@@ -1,5 +1,5 @@
 %md-toolbar
-  .md-toolbar-tools.md-whiteframe-2dp{ layout: 'row', layout_align: 'space-between center' }
+  .md-toolbar-tools.md-whiteframe-2dp.todo-toolbar{ layout: 'row', layout_align: 'space-between center' }
 
     %div
       %md-button.md-button.md-ink-ripple.md-icon-button{ 'hide-gt-sm': '' }
@@ -7,7 +7,10 @@
 
       %h1.md-flex.show-gt-md {{ 'app.title' | translate }}
 
-    %div
+    %div{ layout: 'row', layout_align: 'space-between center' }
+      .loader
+        %md-progress-circular{ 'md-mode': 'indeterminate', 'md-diameter': 25, 'data-after-loaded': 'hide' }
+
       %md-menu
         %md-button.md-icon-button{ 'aria-label': 'Open locale menu', 'ng-click': '$mdMenu.open()' }
           %md-icon{ 'md-menu-origin': '' } translate
