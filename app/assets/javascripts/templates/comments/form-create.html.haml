@@ -1,6 +1,6 @@
 %form{ id: 'new-comment-{{task.id}}', layout: 'row', layout_align: 'space-between center', name: 'commentForm', 'ng-submit': 'ctrl.create(commentForm, task)' }
   %md-input-container.md-block.comment-field{ flex: '' }
-    %textarea.comment-title-field{ 'aria-label': 'Title', 'md-maxlength': '50', 'md-no-asterisk': '', name: 'title', ng_model: 'ctrl.new.title', required: '' }
+    %textarea.comment-title-field{ 'data-enter-event': 'ctrl.create(commentForm, task)', 'aria-label': 'Title', 'md-maxlength': '50', 'md-no-asterisk': '', name: 'title', ng_model: 'ctrl.new.title', required: '' }
     %div.validators{ ng_messages: 'commentForm.title.$error' }
       %div{ ng_message: 'required' } {{ 'validation.required' | translate }}
       %div{ ng_message: 'md-maxlength' } {{ 'validation.max_length' | translate:{value: 50} }}

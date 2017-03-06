@@ -1,6 +1,6 @@
 %form#new-task-form.todo-form{ name: 'taskForm', 'md-whiteframe': '4', 'ng-submit': 'ctrl.create(taskForm, project)', layout: 'row' }
   %md-input-container.md-block.title-container
-    %textarea{ 'aria-label': 'Title', 'md-maxlength': '100', 'md-no-asterisk': '', name: 'title', ng_model: 'ctrl.new.title', required: '' }
+    %textarea{ 'data-enter-event': 'ctrl.create(taskForm, project)', 'aria-label': 'Title', 'md-maxlength': '100', 'md-no-asterisk': '', name: 'title', ng_model: 'ctrl.new.title', required: '' }
     %div.validators{ ng_messages: 'taskForm.title.$error' }
       %div{ ng_message: 'required' } {{ 'validation.required' | translate }}
       %div{ ng_message: 'md-maxlength' } {{ 'validation.max_length' | translate:{value: 100} }}
