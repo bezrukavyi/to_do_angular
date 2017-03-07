@@ -23,6 +23,9 @@
 .center {
   text-align: center;
 }
+.hidden {
+  display: none;
+}
 .read-field:not(.write) {
   &:not(.with-border) {
     input, textarea {
@@ -50,14 +53,6 @@
 }
 .min-35 {
   min-width: 35% !important;
-}
-.checked-task {
-  background: rgb(232, 232, 232);
-  opacity: 0.5;
-  .title {
-    display: block;
-    text-decoration: line-through;
-  }
 }
 /* Todo form */
 .todo-form {
@@ -89,13 +84,6 @@
   margin: 0 0 15px 0;
   padding: 0;
   box-sizing: border-box;
-}
-.task-wrap {
-  padding: 0 20px;
-  margin-bottom: 20px;
-  @media (max-width: 320px) {
-    padding: 0.25em;
-  }
 }
 .todo-params {
   flex: 1;
@@ -152,57 +140,6 @@
   left: auto;
   position: fixed;
 }
-.task-edit {
-  display: flex;
-  justify-content: start;
-  align-items: center;
-  md-input-container {
-    width: 100%;
-  }
-}
-#project-form {
-  margin: 35px 0 25px 0;
-  .md-block {
-    margin: 0;
-  }
-  .title {
-    text-align: center;
-    font-size: 20px;
-    font-weight: 600;
-    margin-bottom: 10px;
-  }
-}
-.project-title {
-  width: 80%;
-  max-width: 650px;
-}
-.hidden {
-  display: none;
-}
-.project-link.active {
-   span {
-    color: rgb(33,150,243);
-  }
-}
-.project-actions {
-  position: relative;
-  margin-bottom: 10px;
-  .md-datepicker-input-container {
-    position: absolute;
-    opacity: 0;
-    visibility: hidden;
-  }
-}
-.project-datepicker {
-  .md-icon-button {
-    @extend .md-24;
-  }
-}
-.date-title {
-  min-height: 20px;
-  font-size: 14px;
-  font-weight: 500;
-}
 .auth-form {
   margin-bottom: 25px;
   md-whiteframe {
@@ -218,28 +155,6 @@
     background-color: #fff;
   }
 }
-.comments-wrap {
-  padding-left: 7%;
-}
-.comment-content {
-  padding: 0;
-  margin-bottom: 10px;
-}
-.comment-field {
-  margin: 0;
-}
-.uploaded-list {
-  display: flex;
-  align-items: center !important;
-  padding: 15px 10px !important;
-}
-.uploaded-image {
-  max-width: 150px;
-  img {
-    width: 100%;
-    display: block;
-  }
-}
 .todo-toolbar {
   position: relative;
   .loader {
@@ -247,5 +162,10 @@
     path {
       stroke: #fff;
     }
+  }
+}
+.todo-datepicker {
+  .md-icon-button {
+    @extend .md-24;
   }
 }

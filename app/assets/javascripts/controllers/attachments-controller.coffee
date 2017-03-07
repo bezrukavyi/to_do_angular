@@ -1,4 +1,4 @@
-AttachmentController = (TodoToast, I18n, Attachment) ->
+AttachmentController = (TodoToast, I18n, Attachment, Access) ->
   ctrl = this
 
   ctrl.upload = (files, object, type) ->
@@ -10,6 +10,8 @@ AttachmentController = (TodoToast, I18n, Attachment) ->
         TodoToast.error(I18n.t('attachment.error.unsupported'))
 
   ctrl.delete = (attachment, object) ->
+    return unless Access.can('request')
+    Access.lock('request')
     Attachment.call.delete(id: attachment.id).$promise.then (
       (response) ->
         index = object.attachments.indexOf(attachment)
@@ -35,5 +37,6 @@ angular.module('toDoApp').controller 'AttachmentController', [
   'TodoToast',
   'I18n',
   'Attachment',
+  'Access',
   AttachmentController
 ]

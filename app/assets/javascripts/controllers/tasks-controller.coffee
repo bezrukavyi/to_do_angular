@@ -1,12 +1,13 @@
-TasksController = (Task, TodoToast, I18n) ->
+TasksController = (Task, TodoToast, I18n, Access) ->
   ctrl = this
   ctrl.editedTask = null
 
   ctrl.new = { project_id: null, title: null, checked: false }
 
   ctrl.create = (form, project) ->
-    return if form.$invalid
+    return if form.$invalid || !Access.can('request')
     ctrl.new.project_id = project.id
+    Access.lock('request')
     Task.create(ctrl.new).$promise.then (
       (response) ->
         project.tasks.push(response)
@@ -27,6 +28,8 @@ TasksController = (Task, TodoToast, I18n) ->
     )
 
   ctrl.delete = (task, project) ->
+    return unless Access.can('request')
+    Access.lock('request')
     Task.delete(id: task.id).$promise.then (
       (response) ->
         index = project.tasks.indexOf(task)
@@ -56,5 +59,6 @@ angular.module('toDoApp').controller 'TasksController', [
   'Task',
   'TodoToast',
   'I18n',
+  'Access',
   TasksController
 ]

@@ -14,7 +14,7 @@
         %md-icon{ ng_if: 'editProjectForm.edited' } done
       %md-button#delete-project.md-button.md-ink-ripple.md-icon-button.md-24{ 'ng-click': 'projects.delete(projects.currentProject)' }
         %md-icon delete
-      %md-datepicker#deadline-project.project-datepicker{ 'md-min-date': 'projects.minDate', name: 'completed_at', ng_model: 'projects.currentProject.completed_at', 'ng-change': 'projects.update(editProjectForm, projects.currentProject)' }
+      %md-datepicker#deadline-project.todo-datepicker{ 'md-min-date': 'projects.minDate', name: 'completed_at', ng_model: 'projects.currentProject.completed_at', 'ng-change': 'projects.update(editProjectForm, projects.currentProject)' }
 
     .date-title {{ projects.currentProject.completed_at | date: 'dd/MM/yy' }}
 

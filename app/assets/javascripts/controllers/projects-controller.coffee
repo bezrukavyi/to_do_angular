@@ -1,4 +1,4 @@
-ProjectsController = (Project, $stateParams, $state, $filter, I18n, TodoToast) ->
+ProjectsController = (Project, $stateParams, $state, $filter, I18n, TodoToast, Access) ->
 
   ctrl = this
   ctrl.currentProject = null
@@ -32,6 +32,8 @@ ProjectsController = (Project, $stateParams, $state, $filter, I18n, TodoToast) -
 
   ctrl.create = () ->
     options = { title: I18n.t('project.default_title') }
+    return unless Access.can('request')
+    Access.lock('request')
     Project.create(options).$promise.then (
       (response) ->
         ctrl.all.push(response)
@@ -54,6 +56,8 @@ ProjectsController = (Project, $stateParams, $state, $filter, I18n, TodoToast) -
     )
 
   ctrl.delete = (project) ->
+    return unless Access.can('request')
+    Access.lock('request')
     Project.delete(id: project.id).$promise.then (
       (response) ->
         ctrl.delete_from_list(ctrl.currentProject)
@@ -82,5 +86,6 @@ angular.module('toDoApp').controller 'ProjectsController', [
   '$filter',
   'I18n',
   'TodoToast',
+  'Access',
   ProjectsController
 ]

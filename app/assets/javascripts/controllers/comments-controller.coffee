@@ -1,4 +1,4 @@
-CommentsController = (Comment, TodoDialog, TodoToast, I18n, Attachment) ->
+CommentsController = (Comment, TodoDialog, TodoToast, I18n, Attachment, Access) ->
   ctrl = this
   ctrl.all = null
 
@@ -16,7 +16,8 @@ CommentsController = (Comment, TodoDialog, TodoToast, I18n, Attachment) ->
         ctrl.gotComment = true
 
   ctrl.create = (form, task) ->
-    return if form.$invalid
+    return if form.$invalid || !Access.can('request')
+    Access.lock('request')
     ctrl.new.task_id = task.id
     Comment.nested.create(ctrl.new).$promise.then (
       (response) ->
@@ -27,6 +28,8 @@ CommentsController = (Comment, TodoDialog, TodoToast, I18n, Attachment) ->
         TodoToast.error(response.data.error)
 
   ctrl.delete = (comment) ->
+    return unless Access.can('request')
+    Access.lock('request')
     Comment.default.delete(id: comment.id).$promise.then (
       (response) ->
         index = ctrl.all.indexOf(comment)
@@ -63,5 +66,6 @@ angular.module('toDoApp').controller 'CommentsController', [
   'TodoToast',
   'I18n',
   'Attachment',
+  'Access',
   CommentsController
 ]
