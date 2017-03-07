@@ -1,7 +1,7 @@
 %md-content{ flex: '', ng_if: 'projects.currentProject' }
 
   %form#project-form{ layout: 'column', layout_align: 'center center', name: 'editProjectForm' }
-    %md-input-container.md-block.project-title{ 'ng-class': "{ 'read-field': !editProjectForm.edited }" }
+    %md-input-container.md-block.project-title.read-field{ 'ng-class': "{ 'write': editProjectForm.edited }" }
       %textarea#title-field.title{ 'data-enter-event': 'projects.edit(editProjectForm, projects.currentProject)', 'aria-label': 'Title', 'md-maxlength': '50', 'md-no-asterisk': '', required: '', name: 'title', ng_model: 'projects.currentProject.title' }
       %span.hidden {{ projects.currentProject.title }}
       %div.validators{ ng_messages: 'editProjectForm.title.$error' }
@@ -21,6 +21,6 @@
   .tasks-content{ layout: 'column', layout_align: 'center center', ng_controller: 'TasksController as tasks' }
     %tasks_create{ ctrl: 'tasks', project: 'projects.currentProject' }
 
-    .todo-list
+    .todo-list{ 'ui-sortable': 'tasks.sortableOptions', 'ng-model': 'projects.currentProject.tasks' }
       .task-wrap{ 'ng-repeat': 'task in projects.currentProject.tasks' }
         %tasks_item{ ctrl: 'tasks', task: 'task', project: 'projects.currentProject' }

@@ -11,6 +11,8 @@
 //= require angular-cookies
 //= require ng-token-auth
 //= require ng-file-upload
+//= require jquery-ui
+//= require angular-ui-sortable
 
 //= require angular-translate
 //= require angular-translate-loader-static-files

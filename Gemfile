@@ -49,6 +49,8 @@ gem 'carrierwave'
 
 gem 'cloudinary'
 
+gem 'acts_as_list'
+
 group :development, :test do
   gem 'byebug', platform: :mri
   gem 'factory_girl_rails'

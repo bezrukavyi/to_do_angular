@@ -1,4 +1,5 @@
 include Support::Auth
+include Support::CanCanStub
 
 describe Api::TasksController, type: :controller do
   let(:user) { create :user }
@@ -51,6 +52,22 @@ describe Api::TasksController, type: :controller do
 
       parsed_response = JSON.parse(response.body)
       expect(parsed_response['error']).not_to be_blank
+    end
+
+    context 'update position' do
+      before do
+        receive_cancan(:load_and_authorize, task: @task)
+      end
+      it 'when position doesnt changed' do
+        valid_params[:task][:position] = 100
+        expect(@task).to receive(:set_list_position).with(100)
+        patch :update, params: valid_params
+      end
+      it 'when position is changed' do
+        valid_params[:task][:position] = @task.position
+        expect(@task).not_to receive(:set_list_position)
+        patch :update, params: valid_params
+      end
     end
   end
 

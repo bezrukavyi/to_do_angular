@@ -23,7 +23,7 @@
 .center {
   text-align: center;
 }
-.read-field {
+.read-field:not(.write) {
   &:not(.with-border) {
     input, textarea {
       border-color: rgba(255, 255, 255, 0);
@@ -34,6 +34,9 @@
     transition: 300ms;
     cursor: default;
     pointer-events: none;
+  }
+  .md-resize-handle {
+    visibility: hidden;
   }
   .md-errors-spacer {
     position: relative;

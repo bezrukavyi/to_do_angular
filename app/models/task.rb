@@ -1,8 +1,8 @@
 class Task < ApplicationRecord
-  default_scope { order(:created_at) }
-
   belongs_to :project
-  has_many :comments, dependent: :destroy
+  acts_as_list scope: :project
+
+  has_many :comments, -> { order(:created_at) }, dependent: :destroy
 
   validates :title, length: { maximum: 100 }, presence: true
 end

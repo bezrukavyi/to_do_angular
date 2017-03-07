@@ -16,4 +16,4 @@
   %div{ layout: 'row', layout_align: 'center' }
     %md-button.md-raised.md-primary{ 'ng-click': 'projects.create()' } {{ 'project.new' | translate }}
 
-%ui-view{ ng_if: 'projects.currentProject', layout: 'row', flex: '' }
+%ui-view.view-slide-in{ ng_if: 'projects.currentProject', layout: 'row', flex: '' }

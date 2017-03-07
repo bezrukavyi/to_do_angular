@@ -3,7 +3,6 @@ FactoryGirl.define do
     title { FFaker::Job.title }
     completed_at FFaker::Time.date
     checked false
-    priority { rand(0..10) }
     project
 
     trait :checked do

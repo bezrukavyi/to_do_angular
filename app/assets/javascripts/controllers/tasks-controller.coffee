@@ -40,6 +40,15 @@ TasksController = (Task, TodoToast, I18n) ->
     form.$setUntouched()
     ctrl.new = {}
 
+  ctrl.sortableOptions =
+    cursor: 'move',
+    stop:  (event, ui) ->
+      task = ui.item.scope().task
+      task.position = ui.item.index() + 1
+      Task.update(task).$promise.then(null, (response) ->
+        TodoToast.error(response.data.error)
+      )
+
   return
 
 
