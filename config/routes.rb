@@ -6,13 +6,13 @@ Rails.application.routes.draw do
       controllers: { omniauth_callbacks: 'omniauth_callbacks' }
 
     resources :translations, only: :show
-    resources :projects
+    resources :projects, except: [:edit, :new]
 
-    resources :tasks do
+    resources :tasks, only: [:create, :update, :destroy] do
       resources :comments, only: [:create, :index]
     end
 
-    resources :comments, except: [:create, :index] do
+    resources :comments, only: [:update, :destroy] do
       resources :attachments, only: :create
     end
 

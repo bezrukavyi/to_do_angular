@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 ruby '2.3.1'
 
 git_source(:github) do |repo_name|
-  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
+  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?('/')
   "https://github.com/#{repo_name}.git"
 end
 
@@ -51,23 +51,25 @@ gem 'cloudinary'
 
 gem 'acts_as_list'
 
+gem 'rails_best_practices'
+
 group :development, :test do
   gem 'byebug', platform: :mri
+  gem 'capybara-webkit'
   gem 'factory_girl_rails'
+  gem 'ffaker'
   gem 'letter_opener_web'
   gem 'pry'
   gem 'rspec-rails'
-  gem 'shoulda'
-  gem 'ffaker'
   gem 'selenium-webdriver'
-  gem 'capybara-webkit'
+  gem 'shoulda'
 end
 
 group :development do
-  gem 'web-console', '>= 3.3.0'
   gem 'listen', '~> 3.0.5'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'web-console', '>= 3.3.0'
 end
 
 group :test do
@@ -76,8 +78,9 @@ group :test do
   gem 'capybara-screenshot'
   gem 'database_cleaner'
   gem 'poltergeist'
-  gem 'shoulda-matchers'
   gem 'rails-controller-testing'
+  gem 'shoulda-matchers'
+  gem 'simplecov', require: false
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

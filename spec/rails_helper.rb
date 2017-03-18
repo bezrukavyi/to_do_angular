@@ -40,3 +40,9 @@ RSpec.configure do |config|
 
   config.filter_rails_from_backtrace!
 end
+
+if ENV['RAILS_ENV'] == 'test'
+  require 'simplecov'
+  SimpleCov.start 'rails'
+  puts 'required simplecov'
+end
