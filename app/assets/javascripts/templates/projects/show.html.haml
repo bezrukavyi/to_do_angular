@@ -3,7 +3,11 @@
     %span.ng-scope {{ 'project.list_title' | translate }}
 
   %md-list(role='list')
-    %md-list-item.noright.project-link(ng_repeat='project in projects.all' ng_class="{ 'active': projects.itsCurrentProject(project) }" ui-sref='projects.detail({projectId: project.id})' ng-click='projects.show({id: project.id}); main.closeLeftSidenav()')
+    %md-list-item.noright.project-link(ng_repeat='project in projects.all'
+      ng_class="{ 'active': projects.itsCurrentProject(project) }"
+      ui-sref='projects.detail({projectId: project.id})'
+      ng-click='projects.show({id: project.id}); main.closeLeftSidenav()')
+
       %span {{ projects.itsCurrentProject(project) ? project.title = projects.currentProject.title : project.title }}
       %md-divider.ng-scope(ng_if='!$last')
 

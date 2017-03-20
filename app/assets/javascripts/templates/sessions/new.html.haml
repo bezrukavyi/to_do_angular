@@ -1,6 +1,11 @@
 %md-content#content(flex='' layout='row')
   .sign-in-container(layout='column' layout_align='center' flex='')
-    %form#new_session.auth-form(name='newSession' ng-submit='session.signIn(newSession)' role='form' layout='row' layout_align='center center')
+    %form#new_session.auth-form(name='newSession'
+      ng-submit='session.signIn(newSession)'
+      role='form'
+      layout='row'
+      layout_align='center center')
+
       %md-whiteframe.md-whiteframe-z1(flex='30' layout='column' layout-padding='')
 
         %md-content(layout='column' layout_align='stretch center')

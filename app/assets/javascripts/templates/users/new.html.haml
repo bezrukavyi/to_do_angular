@@ -1,6 +1,11 @@
 %md-content#content(flex='' layout='row')
   .sign-up-container(layout='column' layout_align='center' flex='')
-    %form#new_user.auth-form(name='userForm' ng-submit='user.create(userForm)' role='form' layout='row' layout_align='center center')
+    %form#new_user.auth-form(name='userForm'
+      ng-submit='user.create(userForm)'
+      role='form'
+      layout='row'
+      layout_align='center center')
+      
       %md-whiteframe.md-whiteframe-z1(flex='30' layout='column' layout-padding='')
 
         %md-content(layout='column' layout_align='stretch center')

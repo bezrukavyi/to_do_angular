@@ -13,21 +13,36 @@
 
       %md-list
         %md-list-item.md-3-line.uploaded-list(ng_repeat='attachment in dialog.object.attachments')
-          %md-button.md-primary(ng_if="attachment.file.type !== 'image'" ng_href='{{ attachment.file.url }}' target='_blank')
+          %md-button.md-primary(ng_if="attachment.file.type !== 'image'"
+            ng_href='{{ attachment.file.url }}' target='_blank')
+
             %md-icon(aria_label='Uploaded file') insert_drive_file
             %span {{ attachment.file.filename }}
 
-          .uploaded-image.md-whiteframe-4dp{ 'ng-if': "attachment.file.type == 'image'", 'ng-href': 'attachment.file.url' }
+          .uploaded-image.md-whiteframe-4dp(ng_if="attachment.file.type == 'image'"
+            ng-href='attachment.file.url')
+
             %a(ng_href='{{ attachment.file.url }}' target='_blank')
               %img(ng_src='{{ attachment.file.url }}')
 
-          %md-button.md-secondary(id='delete-attachment-{{ attachment.id }}' ng-click='attachmentCtrl.delete(attachment, dialog.object)') {{ 'remove' | translate }}
+          %md-button.md-secondary(id='delete-attachment-{{ attachment.id }}'
+            ng-click='attachmentCtrl.delete(attachment, dialog.object)') {{ 'remove' | translate }}
+
           %md-divider
 
       %md-dialog-actions(layout='row' layout_align='center')
         .loader(layout='row' layout_align='center' data_after_loaded='hide')
           %md-progress-circular(md-mode='indeterminate' md-diameter='35')
-        %md-button.md-raised.md-primary(layout='row' data_after_loaded='show' ngf-change='attachmentCtrl.upload($files, dialog.object, dialog.type)' ngf-select='' ngf-multiple='true')
-          %input.hidden(name='file' type='file' ngf-change='attachmentCtrl.upload($files, dialog.object, dialog.type)' ngf-select='' ngf-multiple='true')
+        %md-button.md-raised.md-primary(layout='row'
+          data_after_loaded='show'
+          ngf-change='attachmentCtrl.upload($files, dialog.object, dialog.type)'
+          ngf-select=''
+          ngf-multiple='true')
+
+          %input.hidden(name='file' type='file'
+            ngf-change='attachmentCtrl.upload($files, dialog.object, dialog.type)'
+            ngf-select=''
+            ngf-multiple='true')
+
           %span {{ 'attachment.upload' | translate }}
           %md-icon(aria-label='Upload file') file_upload
