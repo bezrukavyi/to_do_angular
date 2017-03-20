@@ -1,0 +1,17 @@
+.comment-content.todo-item(layout='row' layout_align='space-between center')
+  %form.comment-edit(flex='' id='comment-form-{{comment.id}}' name='editCommentForm')
+    %md-input-container.md-block.with-border(ng_class="{ 'read-field': !editCommentForm.edited }")
+      %textarea.title(data_enter_event='ctrl.edit(editCommentForm, comment)' aria_label='Title' md_maxlength='50' md_no_asterisk='' required='' name='title' ng_model='comment.title')
+      %span.hidden {{ comment.title }}
+      %div.validators(ng_messages='editCommentForm.title.$error')
+        %div(ng_message='required') This is required.
+        %div(ng_message='md-maxlength') The title must be less than 50 characters long.
+
+  %md-actions.todo-actions
+    %md-button.md-icon-button.md-ink-ripple.md-18(aria_label='edit comment' id='edit-comment-{{comment.id}}' ng-click='ctrl.edit(editCommentForm, comment)')
+      %md-icon(ng_if='!editCommentForm.edited') edit
+      %md-icon(ng_if='editCommentForm.edited') done
+    %md-button.md-icon-button.md-button.md-ink-ripple.md-18(id='delete-comment-{{comment.id}}' ng-click= 'ctrl.delete(comment)')
+      %md-icon delete
+    %md-button.md-icon-button.md-button.md-ink-ripple.md-18(id='attachment-comment-{{comment.id}}' ng-class="{ 'md-primary': comment.attachments.length }" ng-click="ctrl.upload_open(comment)")
+      %md-icon file_upload

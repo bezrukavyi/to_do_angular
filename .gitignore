@@ -16,5 +16,8 @@
 # Ignore Byebug command history file.
 .byebug_history
 .overcommit.yml
+vendor/*
+coverage/*
 .rubocop.yml
-vendor/assets/bower_components/*
+config/application.yml
+public/uploads/*

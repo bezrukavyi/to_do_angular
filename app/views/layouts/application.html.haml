@@ -1,11 +1,15 @@
 !!!
-%html
+%html{'ng-app': 'toDoApp'}
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{ content: 'width=device-width', name: 'viewport' }
+    %base{:href => "/"}/
     %title TodoAngular
+    = stylesheet_link_tag 'https://fonts.googleapis.com/css?family=Roboto&subset=cyrillic'
+    = stylesheet_link_tag 'https://fonts.googleapis.com/icon?family=Material+Icons'
     = csrf_meta_tags
-    = javascript_include_tag 'application'
     = stylesheet_link_tag    'application', media: 'all'
-  %body{'ng-app': 'toDoList', 'ng-controller': 'MainController as main'}
-    %div{ 'ng-repeat': 'project in main.projects' }
-      {{project.title}}
+    = javascript_include_tag 'application'
+
+  %body{ layout: 'row' }
+    %ui-view.view-slide-in{ flex: '', layout: 'column' }

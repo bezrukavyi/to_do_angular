@@ -1,23 +1,52 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# To learn more, please read the Rails Internationalization guide
-# available at http://guides.rubyonrails.org/i18n.html.
-
 en:
-  hello: "Hello world"
+  app:
+    title: Angular ToDo
+  project:
+    default_title: New project
+    empty_title: Choose project or create new
+    list_title: Your projects
+    new: New project
+    success:
+      created: "New project success created"
+      deleted: "Project '%{title}' success deleted"
+  task:
+    new: New task
+    success:
+      created: "Task '%{title}' success created"
+      deleted: "Task '%{title}' success deleted"
+  comment:
+    success:
+      created: "Comment '%{title}' success created"
+      deleted: "Comment '%{title}' success deleted"
+  attachment:
+    title: "Uploading files for '%{name}'"
+    upload: Upload file
+    success:
+      created: "File '%{name}' success uploaded"
+      deleted: "File '%{name}' success deleted"
+    error:
+      unsupported: "Uploader doesn't supported"
+    empty_files: No files uploaded
+  auth:
+    email: Email
+    password: Password
+    password_confirmation: Password confirmation
+    sign_up: Sign up
+    sign_in: Sign in
+    registrations: Go to Registrations
+    login: Go to Login
+    success:
+      sign_up: Success registered. Confirmation email sent to you
+      sign_in: Success signed in
+      sign_out: Success signe out
+    error:
+      must_authed: You must be authorized
+      signed_in: You have already authorized
+  language:
+    russian: Russian
+    english: English
+  validation:
+    required: This is required
+    max_length: Must be less than %{value} characters long
+  close: Close
+  remove: Remove

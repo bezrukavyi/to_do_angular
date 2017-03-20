@@ -1,0 +1,27 @@
+.task-content
+  .comment-task-wrap(ng_controller='CommentsController as comments')
+    %md-card.todo-item-wrap
+      %md-card-content.todo-item(layout='row' layout_align='space-between center' ng-class= "{ 'checked-task': task.checked }")
+        %form.task-edit(id='task-form-{{ task.id }}' flex='' name='editTaskForm')
+          %md-checkbox.todo-checkbox(id='task-checkbox-{{ task.id }}' aria-label='Checkbox' name='checked' ng_model='task.checked' ng-change='ctrl.update(editTaskForm, task)')
+          %md-input-container.md-block(ng-class="{ 'read-field': !editTaskForm.edited }")
+            %textarea.title(id='task-title-{{task.id}}' data_enter_event='ctrl.edit(editTaskForm, task)' aria-label='Title' md_maxlength='100' md-no-asterisk='' required='' name='title' ng_model='task.title')
+            %span.hidden {{ task.title }}
+            %div.validators(ng_messages='editTaskForm.title.$error')
+              %div(ng_message='required') This is required.
+              %div(ng_message='md-maxlength') The title must be less than 100 characters long.
+
+        %md-actions.todo-actions
+          %md-button.md-icon-button.md-ink-ripple.md-18(id='edit-task-{{task.id}}' aria-label='edit task' ng-click='ctrl.edit(editTaskForm, task)')
+            %md-icon(ng_if='!editTaskForm.edited') edit
+            %md-icon(ng_if='editTaskForm.edited') done
+          %md-button.md-icon-button.md-button.md-ink-ripple.md-18(id='delete-task-{{task.id}}' ng-click='ctrl.delete(task, project)')
+            %md-icon delete
+          %md-button.md-icon-button.md-button.md-ink-ripple.md-18(id='show-comments-{{task.id}}' ng-click='comments.index(task); comments.visibleComments = !comments.visibleComments')
+            %md-icon comment
+
+    .comments-wrap(ng_if='comments.visibleComments && comments.gotComment')
+      .comment-item-wrap(ng_repeat='comment in comments.all')
+        %comments_item(ctrl='comments' comment='comment' task='task')
+      .task-form
+        %comments_create(ctrl='comments' task='task')
