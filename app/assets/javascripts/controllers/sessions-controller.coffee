@@ -1,5 +1,5 @@
 SessionsController = ($auth, $rootScope, $state, I18n, TodoToast, Omniauth) ->
-  ctrl = this
+  ctrl = @
   ctrl.new = {}
 
   ctrl.signIn = (form) ->

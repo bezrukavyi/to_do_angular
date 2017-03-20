@@ -37,22 +37,18 @@ angular.module('toDoApp').config ['$stateProvider', '$urlRouterProvider', '$loca
 
   $locationProvider.html5Mode(true)
   $urlRouterProvider.otherwise '/projects'
-
-  return
 ]
 
 redirectAuth = ($auth, $state, $translate, TodoToast) ->
   $auth.validateUser().catch (res) ->
     $state.go 'sign_in'
     TodoToast.error($translate('auth.error.must_authed'))
-    return
 
 redirectAuthed = ($auth, $state, $location, I18n, TodoToast) ->
   $auth.validateUser()
     .then(() ->
       $state.go 'projects'
       TodoToast.error(I18n.t('auth.error.signed_in'))
-      return
     )
     .catch(() ->
       return
@@ -62,4 +58,3 @@ angular.module('toDoApp').run ($rootScope, $state, $auth, I18n, TodoToast) ->
   $rootScope.$on 'auth:logout-success', (ev) ->
     $state.go 'sign_in'
     TodoToast.success(I18n.t('auth.success.sign_out'))
-  return

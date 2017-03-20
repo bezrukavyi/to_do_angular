@@ -1,8 +1,7 @@
 angular.module('toDoApp').config ($translateProvider) ->
-  $translateProvider.useStaticFilesLoader {
+  $translateProvider.useStaticFilesLoader
     prefix: 'api/translations/',
     suffix: '.json'
-  }
   $translateProvider.useSanitizeValueStrategy('escapeParameters')
   $translateProvider.preferredLanguage('en')
   $translateProvider.useLocalStorage()

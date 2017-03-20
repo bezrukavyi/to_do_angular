@@ -1,4 +1,4 @@
-@app = angular.module('toDoApp', [
+angular.module('toDoApp', [
   'ngMaterial',
   'ui.router',
   'ngResource',

@@ -1,11 +1,8 @@
 angular.module('toDoApp').directive 'tasksItem', () ->
-  return {
-    restrict: 'E',
-    replace: true,
-    scope: {
-      ctrl: '=',
-      task: '=',
-      project: '='
-    },
-    templateUrl: 'tasks/item.html'
-   }
+  restrict: 'E'
+  replace: true
+  templateUrl: 'tasks/item.html'
+  scope:
+    ctrl: '='
+    task: '='
+    project: '='

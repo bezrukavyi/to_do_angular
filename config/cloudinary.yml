@@ -1,19 +1,19 @@
 ---
 development:
-  cloud_name: dajydvrqu
-  api_key: "551533498585976"
-  api_secret: nxEv84jXa-Ebiw1qZJA0-q_fpqw
+  cloud_name: <%= Figaro.env.cloudinary_cloud_name %>
+  api_key: <%= Figaro.env.cloudinary_api_key %>
+  api_secret: <%= Figaro.env.cloudinary_api_secret %>
   enhance_image_tag: true
   static_image_support: false
 production:
-  cloud_name: dajydvrqu
-  api_key: "551533498585976"
-  api_secret: nxEv84jXa-Ebiw1qZJA0-q_fpqw
+  cloud_name: <%= Figaro.env.cloudinary_cloud_name %>
+  api_key: <%= Figaro.env.cloudinary_api_key %>
+  api_secret: <%= Figaro.env.cloudinary_api_secret %>
   enhance_image_tag: true
-  static_image_support: true
+  static_image_support: false
 test:
-  cloud_name: dajydvrqu
-  api_key: "551533498585976"
-  api_secret: nxEv84jXa-Ebiw1qZJA0-q_fpqw
+  cloud_name: <%= Figaro.env.cloudinary_cloud_name %>
+  api_key: <%= Figaro.env.cloudinary_api_key %>
+  api_secret: <%= Figaro.env.cloudinary_api_secret %>
   enhance_image_tag: true
   static_image_support: false

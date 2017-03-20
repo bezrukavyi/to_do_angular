@@ -1,6 +1,5 @@
 ProjectsController = (Project, $stateParams, $state, $filter, I18n, TodoToast, Access) ->
-
-  ctrl = this
+  ctrl = @
   ctrl.currentProject = null
   ctrl.all = null
 

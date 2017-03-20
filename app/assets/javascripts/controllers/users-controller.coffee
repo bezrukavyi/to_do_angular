@@ -1,5 +1,5 @@
 UsersController = ($auth, $state, I18n, TodoToast, Omniauth) ->
-  ctrl = this
+  ctrl = @
 
   ctrl.new = {
     email: null,

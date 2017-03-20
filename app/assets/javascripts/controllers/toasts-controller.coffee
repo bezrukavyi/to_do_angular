@@ -1,5 +1,5 @@
 ToastsController = ($mdToast, message) ->
-  ctrl = this
+  ctrl = @
   ctrl.message = message
   ctrl.mdToast = $mdToast
 

@@ -1,5 +1,5 @@
 AttachmentController = (TodoToast, I18n, Attachment, Access) ->
-  ctrl = this
+  ctrl = @
 
   ctrl.upload = (files, object, type) ->
     return unless files && files.length
@@ -31,7 +31,6 @@ AttachmentController = (TodoToast, I18n, Attachment, Access) ->
         TodoToast.error(I18n.t('attachment.error.created'))
 
   return
-
 
 angular.module('toDoApp').controller 'AttachmentController', [
   'TodoToast',

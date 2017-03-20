@@ -1,7 +1,6 @@
 CommentsController = (Comment, TodoDialog, TodoToast, I18n, Attachment, Access) ->
-  ctrl = this
+  ctrl = @
   ctrl.all = null
-
   ctrl.new = { task_id: null, title: null }
 
   ctrl.index = (task) ->
@@ -58,7 +57,6 @@ CommentsController = (Comment, TodoDialog, TodoToast, I18n, Attachment, Access) 
     ctrl.new = {}
 
   return
-
 
 angular.module('toDoApp').controller 'CommentsController', [
   'Comment',

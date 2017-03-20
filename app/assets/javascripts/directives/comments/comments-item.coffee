@@ -1,11 +1,8 @@
 angular.module('toDoApp').directive 'commentsItem', () ->
-  return {
-    restrict: 'E',
-    replace: true,
-    scope: {
-      ctrl: '=',
-      comment: '=',
-      task: '='
-    },
-    templateUrl: 'comments/item.html'
-   }
+  restrict: 'E'
+  replace: true
+  templateUrl: 'comments/item.html'
+  scope:
+    ctrl: '='
+    comment: '='
+    task: '='

@@ -1,10 +1,7 @@
 angular.module('toDoApp').directive 'tasksCreate', () ->
-  return {
-    restrict: 'E',
-    replace: true,
-    scope: {
-      ctrl: '=',
-      project: '='
-    },
-    templateUrl: 'tasks/form-create.html'
-   }
+  restrict: 'E'
+  replace: true
+  templateUrl: 'tasks/form-create.html'
+  scope:
+    ctrl: '='
+    project: '='

@@ -1,5 +1,5 @@
 MainController = ($mdSidenav) ->
-  ctrl = this
+  ctrl = @
 
   ctrl.toggleLeftSidenav = () ->
     $mdSidenav('left-sidenav').toggle()

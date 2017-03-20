@@ -1,5 +1,5 @@
 TasksController = (Task, TodoToast, I18n, Access) ->
-  ctrl = this
+  ctrl = @
   ctrl.editedTask = null
 
   ctrl.new = { project_id: null, title: null, checked: false }

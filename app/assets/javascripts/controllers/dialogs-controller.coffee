@@ -1,5 +1,5 @@
 DialogsController = ($mdDialog, object, object_ctrl, type) ->
-  ctrl = this
+  ctrl = @
   ctrl.object = object
   ctrl.object_ctrl = object_ctrl
   ctrl.type = type

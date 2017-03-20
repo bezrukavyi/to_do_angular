@@ -8,49 +8,27 @@ git_source(:github) do |repo_name|
 end
 
 gem 'rails', '~> 5.0.1'
-
 gem 'pg', '~> 0.18'
-
 gem 'puma', '~> 3.0'
-
 gem 'sass-rails', '~> 5.0'
-
 gem 'coffee-rails', '~> 4.2'
-
 gem 'uglifier', '>= 1.3.0'
-
 gem 'jbuilder', '~> 2.5'
-
 gem 'haml-rails'
-
 gem 'angular-rails-templates'
-
 gem 'angular_rails_csrf'
-
 gem 'active_model_serializers'
-
 gem 'devise_token_auth'
-
 gem 'rack-cors'
-
 gem 'omniauth'
-
 gem 'omniauth-facebook'
-
 gem 'omniauth-google-oauth2'
-
 gem 'rack-cors'
-
 gem 'figaro'
-
 gem 'cancancan'
-
 gem 'carrierwave'
-
 gem 'cloudinary'
-
 gem 'acts_as_list'
-
 gem 'rails_best_practices'
 
 group :development, :test do
