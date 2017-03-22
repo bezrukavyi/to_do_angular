@@ -7,7 +7,7 @@ feature 'Create project', type: :feature, js: true do
 
   background do
     sign_in email: user.email
-    sleep 1
+    wait_ajax
   end
 
   scenario 'user can create new project' do

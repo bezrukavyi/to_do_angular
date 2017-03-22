@@ -10,7 +10,7 @@ feature 'Show comments', type: :feature, js: true do
     @project = create :project, user: user
     @task = create :task, :with_comments, project: @project
     sign_in email: user.email
-    sleep 1
+    wait_ajax
     choose_project(@project)
   end
 

@@ -1,8 +1,12 @@
+require_relative 'wait_ajax_helper'
+
 module Support
   module Projects
+    include Support::WaitAjax
+
     def choose_project(project)
       first('.project-link', text: project.title).click
-      sleep 1
+      wait_ajax
     end
 
     def delete_project

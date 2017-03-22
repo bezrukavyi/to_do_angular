@@ -9,7 +9,7 @@ feature 'Create task', type: :feature, js: true do
   background do
     @project = create :project, user: user
     sign_in email: user.email
-    sleep 1
+    wait_ajax
     choose_project(@project)
   end
 

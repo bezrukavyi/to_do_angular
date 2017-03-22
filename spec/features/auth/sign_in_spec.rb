@@ -11,7 +11,7 @@ feature 'Sign in', type: :feature, js: true do
   scenario 'User has already signed in' do
     user = create :user, :default_password
     sign_in email: user.email
-    sleep 3
+    wait_ajax
     visit '/sign_in'
     expect(page).to have_content I18n.t('auth.error.signed_in')
   end

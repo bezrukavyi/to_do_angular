@@ -8,7 +8,7 @@ feature 'Show project', type: :feature, js: true do
   background do
     @projects = create_list(:project, 2, :with_tasks, user: user)
     sign_in email: user.email
-    sleep 1
+    wait_ajax
   end
 
   scenario 'user can show list projects' do

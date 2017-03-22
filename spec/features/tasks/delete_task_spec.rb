@@ -10,7 +10,7 @@ feature 'Delete task', type: :feature, js: true do
     @project = create :project, user: user
     @task = create :task, project: @project
     sign_in email: user.email
-    sleep 1
+    wait_ajax
     choose_project(@project)
   end
 

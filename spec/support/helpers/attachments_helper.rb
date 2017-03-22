@@ -1,5 +1,9 @@
+require_relative 'wait_ajax_helper'
+
 module Support
   module Attachments
+    include Support::WaitAjax
+
     def check_attachment_attrs(attachment, exist = true)
       metadata = attachment.file.metadata
       path = metadata ? metadata['url'] : attachment.file.url
@@ -20,7 +24,7 @@ module Support
       within "#attachment-upload-#{object.id}" do
         attach_file 'file', File.absolute_path(options[:file].path), visible: :hidden
       end
-      sleep 2
+      wait_ajax
     end
   end
 end

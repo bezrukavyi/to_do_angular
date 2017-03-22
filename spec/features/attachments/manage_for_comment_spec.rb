@@ -14,7 +14,7 @@ feature 'Show for comment', type: :feature, js: true do
     @comment = create :comment, task: task
     @attachment = create :attachment, comment: @comment
     sign_in email: user.email
-    sleep 1
+    wait_ajax
     choose_project(project)
     show_comments(task)
     show_attachment(@comment)
