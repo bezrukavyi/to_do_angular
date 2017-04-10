@@ -1,8 +1,8 @@
 class ApplicationController < ActionController::Base
+  protect_from_forgery with: :null_session
+
   include ActionController::Serialization
   include DeviseTokenAuth::Concerns::SetUserByToken
-
-  protect_from_forgery with: :exception
 
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
   rescue_from CanCan::AccessDenied, with: :record_not_found
