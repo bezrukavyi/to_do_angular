@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  apipie
   root 'application#angular'
 
   namespace 'api', defaults: { format: :json } do
